@@ -1,0 +1,41 @@
+<!-- ---
+layout: examples
+title: Floating labels example
+extra_css: "floating-labels.css"
+include_js: false
+--- -->
+
+<form class="form-signin">
+    <!-- <div class="text-center mb-4">
+        <img class="mb-4" src="/assets/brand/bootstrap-solid.svg" alt=""
+            width="72" height="72">
+        <h1 class="h3 mb-3 font-weight-normal">Floating labels</h1>
+        <p>Build form controls with floating labels via the <code>:placeholder-shown</code> pseudo-element. <a
+                href="https://caniuse.com/#feat=css-placeholder-shown">Works in latest Chrome, Safari, and Firefox.</a>
+        </p>
+    </div> -->
+
+    <div class="text-center mb-4">
+        <img class="mb-4" src="/assets/brand/medico.svg" alt="" width="72" height="72">
+        <h1 class="h3 mb-3 font-weight-normal">Ingresar</h1>
+    </div>
+
+    <div class="form-label-group">
+        <input type="email" id="inputEmail" class="form-control" placeholder="Usuario" required autofocus>
+        <label for="inputEmail">Usuario</label>
+    </div>
+
+    <div class="form-label-group">
+        <input type="password" id="inputPassword" class="form-control" placeholder="Contraseña" required>
+        <label for="inputPassword">Contraseña</label>
+    </div>
+
+    <!-- <div class="checkbox mb-3">
+        <label>
+            <input type="checkbox" value="remember-me"> Remember me
+        </label>
+    </div> -->
+    <a class="btn btn-lg btn-primary btn-block" [routerLink]="['/home']">Iniciar Sesión</a>
+    <!-- <button class="btn btn-lg btn-primary btn-block" type="submit">Iniciar Sesión</button> -->
+    <!-- <p class="mt-5 mb-3 text-muted text-center">&copy; 2020</p> -->
+</form>
