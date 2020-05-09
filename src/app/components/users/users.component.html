@@ -1,0 +1,183 @@
+<div class="izq">
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="form-container">
+                <h1>Gestionar Usuario</h1>
+                <!-- (ngSubmit)="onSaveForm()" -->
+                <form class="form" #userForm="ngForm">
+                    <b> <label for="cedula">Cedula <a style="color: red;">*</a></label></b>
+                    <input type="text" id="idUsuario" style="display: none" value="">
+                    <input id="cedula" name="cedula" type="number" placeholder="Cedula" class="form-control" required
+                        autofocus>
+                    <!-- [(ngModel)]="users.cedula"
+                     #cedula="ngModel" -->
+                    <!-- <div class="alert-danger" *ngIf="name.invalid && (name.dirty || name.touched)">
+                    <div class="container-error-message" *ngIf="name.errors.required">
+                            Name is required
+                        </div>
+                        <div class="container-error-message" *ngIf="name.errors.minlength">
+                            Name must be at least 5 characters long.
+                        </div>
+                    </div> -->
+
+                    <b> <label for="nombre">Nombre <a style="color: red;">*</a></label></b>
+                    <input id="nombre" name="name" type="text" placeholder="Nombre" class="form-control" required
+                        autofocus>
+                    <!-- [(ngModel)]="users.name" 
+                        #name="ngModel"
+                        -->
+                    <!-- <div class="alert-danger" *ngIf="email.invalid && (email.dirty || email.touched)">
+                        <div class="container-error-message" *ngIf="email.errors.required">
+                            Email is required
+                        </div>
+                        <div class="container-error-message" *ngIf="email.errors.minlength">
+                            Email must be at least 5 characters long.
+                        </div>
+                        <div class="container-error-message"
+                            *ngIf="(email.dirty || email.touched) && email.invalid && email.errors.pattern">
+                            Value has to be a valid email address.
+                        </div>
+                        </div> -->
+                    <b> <label for="lastname">Apellido <a style="color: red;">*</a></label></b>
+                    <input id="lastname" name="lastname" type="text" placeholder="Apellido" class="form-control"
+                        required autofocus>
+                    <!-- [(ngModel)]="users.lastname" 
+                        #lastname="ngModel"
+                        -->
+                    <!-- <div class="alert-danger" *ngIf="message.invalid && (message.dirty || message.touched)">
+                        <div class="container-error-message" *ngIf="message.errors.required">
+                            Message is required
+                        </div>
+                        <div class="container-error-message" *ngIf="message.errors.minlength">
+                            Message must be at least 10 characters long.
+                        </div>
+                        </div> -->
+                    <b> <label for="inputEmail">Correo <a style="color: red;">*</a></label></b>
+                    <input type="email" id="inputEmail" name="mail" placeholder="Correo" class="form-control" required
+                        autofocus>
+
+                    <b> <label for="inputUser">Usuario <a style="color: red;">*</a></label></b>
+                    <input type="text" id="inputUser" class="form-control" placeholder="Usuario" required autofocus>
+
+                    <b> <label for="inputPassword">Contraseña <a style="color: red;">*</a></label></b>
+                    <input type="password" id="inputPassword" class="form-control" placeholder="Contraseña" required>
+
+                    <!-- <label style="display: none;">espacio en blanco</label> -->
+                    <div class="mx-auto" style="width: 230px;">
+                        <tr>
+                            <td class="pRigth">
+                                <button type="submit" class="btn btn-success btn-block"
+                                    [disabled]="userForm.invalid"><b>Guardar</b></button>
+                                <!-- btn-send -->
+                            </td>
+                            <td class="pRigth">
+                                <button type="submit" class="btn btn-warning btn-block"
+                                    [disabled]="userForm.invalid"><b>Actualizar</b></button>
+                            </td>
+                        </tr>
+                        <tr>&nbsp;</tr>
+                        <tr>
+                            <td class="pRigth">
+                                <button type="submit" class="btn btn-danger btn-block"
+                                    [disabled]="userForm.invalid"><b>Eliminar</b></button>
+                                <!-- btn-send -->
+                            </td>
+                            <td class="pRigth">
+                                <button type="submit" class="btn btn-outline-dark btn-block"
+                                    [disabled]="userForm.invalid"><b>Limpiar</b></button>
+                            </td>
+                        </tr>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="dere">
+            <div class="col-sm-6">
+                <div class="form-containerD">
+                    <h1 class="text-center">Datos Usuarios</h1>
+                    <table>
+                        <tr>
+                            <td rowspan="10">
+                                <table class="table table-hover" id="tableUsuarios">
+                                    <thead>
+                                        <tr>
+                                            <th style="display: none">id</th>
+                                            <th>Cedula</th>
+                                            <th>Nombre</th>
+                                            <th>Apellido</th>
+                                            <th>Correo</th>
+                                            <th>Usuario</th>
+                                            <th>Password</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="listaUsuarios">
+
+                                    </tbody>
+                                </table>
+                                <table>
+                                    <tr>
+                                        <td>
+                                            <form name="formPDF" method="post" target="_blank"
+                                                action="./controller/ctlReporte.php">
+                                                <input type="text" id="txtReporteU" style="display: none"
+                                                    value="Usuario(0)" name="tabla">
+                                                <input type="text" id="nomTabla" style="display: none" value="Usuarios"
+                                                    name="nomTabla">
+                                                <input class="btn btn-outline-info" type="submit" value="Generar PDF"
+                                                    id="btnPdfU">
+                                            </form>
+                                        </td>
+                                        <td>
+                                            <form name="formPDF" method="post" target="_blank"
+                                                action="./controller/ctlExportar.php">
+                                                <input type="text" id="txtReporteU" style="display: none"
+                                                    value="Usuario(0)" name="tabla">
+                                                <input type="text" id="nomTabla" style="display: none" value="Usuarios"
+                                                    name="nomTabla">
+                                                <input type="text" value="," name="coma" id="coma"
+                                                    style="display: none">
+                                                <input class="btn btn-outline-info" type="submit"
+                                                    value="Exportar CSV con ( , )" id="btnCsvU">
+                                            </form>
+                                        </td>
+                                        <td>
+                                            <form name="formPDF" method="post" target="_blank"
+                                                action="./controller/ctlExportar.php">
+                                                <input type="text" id="txtReporteU" style="display: none"
+                                                    value="Usuario(0)" name="tabla">
+                                                <input type="text" id="nomTabla" style="display: none" value="Usuarios"
+                                                    name="nomTabla">
+                                                <input type="text" value=";" name="coma" id="coma"
+                                                    style="display: none">
+                                                <input class="btn btn-outline-info" type="submit"
+                                                    value="Exportar CSV con ( ; )" id="btnCsvU">
+                                            </form>
+                                        </td>
+                                        <td>
+                                            <form name="formPDF" method="post" target="_blank"
+                                                action="./controller/ctlExportar.php">
+                                                <input type="text" id="txtReporteU" style="display: none"
+                                                    value="Usuario(0)" name="tabla">
+                                                <input type="text" id="nomTabla" style="display: none" value="Usuarios"
+                                                    name="nomTabla">
+                                                <input type="text" value=":" name="coma" id="coma"
+                                                    style="display: none">
+                                                <input class="btn btn-outline-info" type="submit"
+                                                    value="Exportar CSV con ( : )" id="btnCsvU">
+                                            </form>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="row">
+
+</div>
