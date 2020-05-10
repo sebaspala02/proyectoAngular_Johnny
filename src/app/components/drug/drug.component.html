@@ -1,0 +1,188 @@
+<div class="izq">
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="form-container">
+                <h1>Gestionar Medicamentos</h1>
+                <!-- (ngSubmit)="onSaveForm()" -->
+                <form class="form" #drugForm="ngForm">
+                    <input type="text" id="idDrug" style="display: none" value="">
+                    <!-- [(ngModel)]="users.cedula"
+                     #cedula="ngModel" -->
+                    <!-- <div class="alert-danger" *ngIf="name.invalid && (name.dirty || name.touched)">
+                    <div class="container-error-message" *ngIf="name.errors.required">
+                            Name is required
+                        </div>
+                        <div class="container-error-message" *ngIf="name.errors.minlength">
+                            Name must be at least 5 characters long.
+                        </div>
+                    </div> -->
+
+                    <b> <label for="nombre">Nombre <a style="color: red;">*</a></label></b>
+                    <input id="nombre" name="name" type="text" placeholder="Nombre" class="form-control" required
+                        autofocus>
+                    <!-- [(ngModel)]="users.name" 
+                        #name="ngModel"
+                        -->
+                    <!-- <div class="alert-danger" *ngIf="email.invalid && (email.dirty || email.touched)">
+                        <div class="container-error-message" *ngIf="email.errors.required">
+                            Email is required
+                        </div>
+                        <div class="container-error-message" *ngIf="email.errors.minlength">
+                            Email must be at least 5 characters long.
+                        </div>
+                        <div class="container-error-message"
+                            *ngIf="(email.dirty || email.touched) && email.invalid && email.errors.pattern">
+                            Value has to be a valid email address.
+                        </div>
+                        </div> -->
+                    <b> <label for="description">Descripción <a style="color: red;">*</a></label></b>
+                    <textarea id="description" name="description" type="text" placeholder="Descripción"
+                        class="form-control" required autofocus></textarea>
+                    <!-- [(ngModel)]="users.lastname" 
+                        #lastname="ngModel"
+                        -->
+                    <!-- <div class="alert-danger" *ngIf="message.invalid && (message.dirty || message.touched)">
+                        <div class="container-error-message" *ngIf="message.errors.required">
+                            Message is required
+                        </div>
+                        <div class="container-error-message" *ngIf="message.errors.minlength">
+                            Message must be at least 10 characters long.
+                        </div>
+                        </div> -->
+                    <b> <label for="inputExpiry">Fecha de Vencimiento <a style="color: red;">*</a></label></b>
+                    <input type="date" id="inputExpiry" name="inputExpiry" placeholder="Fecha de Vencimiento"
+                        class="form-control" required autofocus>
+
+                    <b> <label for="inputCant">Cantidad <a style="color: red;">*</a></label></b>
+                    <input type="number" id="inputCant" class="form-control" placeholder="Cantidad" required autofocus>
+
+                    <b> <label for="inputCreation">Fecha de Creación <a style="color: red;">*</a></label></b>
+                    <input type="date" id="inputCreation" class="form-control" placeholder="Fecha de Creación" required
+                        autofocus>
+
+                    <b> <label for="inputPrice">Precio <a style="color: red;">*</a></label></b>
+                    <input type="number" id="inputPrice" class="form-control" placeholder="Precio" required autofocus>
+
+                    <b> <label for="inputUser">Usuario <a style="color: red;">*</a></label></b>
+                    <select class="form-control" id="idUsers" name="inputUser" required autofocus></select>
+
+                    <b> <label for="inputLab">Laboratorio <a style="color: red;">*</a></label></b>
+                    <select class="form-control" id="idLab" name="inputLab" required autofocus></select>
+
+                    <!-- <label style="display: none;">espacio en blanco</label> -->
+                    <div class="mx-auto" style="width: 230px;">
+                        <tr>&nbsp;</tr>
+                        <tr>
+                            <td class="pRigth">
+                                <button type="submit" class="btn btn-success btn-block"
+                                    [disabled]="drugForm.invalid"><b>Guardar</b></button>
+                                <!-- btn-send -->
+                            </td>
+                            <td class="pRigth">
+                                <button type="submit" class="btn btn-warning btn-block"
+                                    [disabled]="drugForm.invalid"><b>Actualizar</b></button>
+                            </td>
+                        </tr>
+                        <tr>&nbsp;</tr>
+                        <tr>
+                            <td class="pRigth">
+                                <button type="submit" class="btn btn-danger btn-block"
+                                    [disabled]="drugForm.invalid"><b>Eliminar</b></button>
+                                <!-- btn-send -->
+                            </td>
+                            <td class="pRigth">
+                                <button type="submit" class="btn btn-outline-dark btn-block"
+                                    [disabled]="drugForm.invalid"><b>Limpiar</b></button>
+                            </td>
+                        </tr>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="dere">
+            <div class="col-sm-6">
+                <div class="form-containerD">
+                    <h1 class="text-center">Datos Medicamentos</h1>
+                    <table>
+                        <tr>
+                            <td rowspan="10">
+                                <table class="table table-hover" id="tableMedis">
+                                    <thead>
+                                        <tr>
+                                            <th style="display: none">id</th>
+                                            <th>Nombre</th>
+                                            <th>Descripción</th>
+                                            <th>Fecha de Vencimiento</th>
+                                            <th>Cantidad</th>
+                                            <th>Fecha de Creación</th>
+                                            <th>Precio</th>
+                                            <th>Usuario</th>
+                                            <th>Laboratorio</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="listaMedi">
+
+                                    </tbody>
+                                </table>
+                                <table>
+                                    <tr>
+                                        <td>
+                                            <form name="formPDF" method="post" target="_blank"
+                                                action="./controller/ctlReporte.php">
+                                                <input type="text" id="txtReporteM" style="display: none"
+                                                    value="Medi(0)" name="tabla">
+                                                <input type="text" id="nomTabla" style="display: none"
+                                                    value="Medicamentos" name="nomTabla">
+                                                <input class="btn btn-outline-info" type="submit" value="Generar PDF"
+                                                    id="btnPdfM">
+                                            </form>
+                                        </td>
+                                        <td>
+                                            <form name="formPDF" method="post" target="_blank"
+                                                action="./controller/ctlExportar.php">
+                                                <input type="text" id="txtReporteU" style="display: none"
+                                                    value="Medi(0)" name="tabla">
+                                                <input type="text" id="nomTabla" style="display: none"
+                                                    value="Medicamentos" name="nomTabla">
+                                                <input type="text" value="," name="coma" id="coma"
+                                                    style="display: none">
+                                                <input class="btn btn-outline-info" type="submit"
+                                                    value="Exportar CSV con ( , )" id="btnCsvM">
+                                            </form>
+                                        </td>
+                                        <td>
+                                            <form name="formPDF" method="post" target="_blank"
+                                                action="./controller/ctlExportar.php">
+                                                <input type="text" id="txtReporteU" style="display: none"
+                                                    value="Medi(0)" name="tabla">
+                                                <input type="text" id="nomTabla" style="display: none"
+                                                    value="Medicamentos" name="nomTabla">
+                                                <input type="text" value=";" name="coma" id="coma"
+                                                    style="display: none">
+                                                <input class="btn btn-outline-info" type="submit"
+                                                    value="Exportar CSV con ( ; )" id="btnCsvM">
+                                            </form>
+                                        </td>
+                                        <td>
+                                            <form name="formPDF" method="post" target="_blank"
+                                                action="./controller/ctlExportar.php">
+                                                <input type="text" id="txtReporteU" style="display: none"
+                                                    value="Medi(0)" name="tabla">
+                                                <input type="text" id="nomTabla" style="display: none"
+                                                    value="Medicamentos" name="nomTabla">
+                                                <input type="text" value=":" name="coma" id="coma"
+                                                    style="display: none">
+                                                <input class="btn btn-outline-info" type="submit"
+                                                    value="Exportar CSV con ( : )" id="btnCsvM">
+                                            </form>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

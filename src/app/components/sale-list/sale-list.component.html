@@ -1,0 +1,104 @@
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="form-container">
+                <h3 class="text-center">Listado de Ventas Realizadas</h3>
+                <table>
+                    <tr>
+                        <td rowspan="10">
+                            <table class="table table-sm" id="tableVentas">
+                                <thead>
+                                    <tr>
+                                        <th style="display: none">id</th>
+                                        <th>Cliente</th>
+                                        <th>Fecha Venta</th>
+                                        <th>Precio/Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="listaVenta">
+
+                                </tbody>
+                            </table>
+                            <table>
+                                <tr>
+                                    <td>
+                                        <form name="formPDF" method="post" target="_blank"
+                                            action="./controller/ctlReporte.php">
+                                            <input type="text" id="txtReporteV" style="display: none" name="tabla"
+                                                value="Venta(0)">
+                                            <input type="text" id="nomTabla" style="display: none" value="Ventas"
+                                                name="nomTabla">
+                                            <input class="btn btn-outline-info" type="submit" value="Generar PDF"
+                                                id="btnPdfV">
+                                        </form>
+                                    </td>
+                                    <td>
+                                        <form name="formPDF" method="post" target="_blank"
+                                            action="./controller/ctlExportar.php">
+                                            <input type="text" id="txtReporteU" style="display: none" value="Venta(0)"
+                                                name="tabla">
+                                            <input type="text" id="nomTabla" style="display: none" value="Ventas"
+                                                name="nomTabla">
+                                            <input type="text" value="," name="coma" id="coma" style="display: none">
+                                            <input class="btn btn-outline-info" type="submit"
+                                                value="Exportar CSV con ( , )" id="btnCsvV">
+                                        </form>
+                                    </td>
+                                    <td>
+                                        <form name="formPDF" method="post" target="_blank"
+                                            action="./controller/ctlExportar.php">
+                                            <input type="text" id="txtReporteU" style="display: none" value="Venta(0)"
+                                                name="tabla">
+                                            <input type="text" id="nomTabla" style="display: none" value="Ventas"
+                                                name="nomTabla">
+                                            <input type="text" value=";" name="coma" id="coma" style="display: none">
+                                            <input class="btn btn-outline-info" type="submit"
+                                                value="Exportar CSV con ( ; )" id="btnCsvM">
+                                        </form>
+                                    </td>
+                                    <td>
+                                        <form name="formPDF" method="post" target="_blank"
+                                            action="./controller/ctlExportar.php">
+                                            <input type="text" id="txtReporteU" style="display: none" value="Venta(0)"
+                                                name="tabla">
+                                            <input type="text" id="nomTabla" style="display: none" value="Ventas"
+                                                name="nomTabla">
+                                            <input type="text" value=":" name="coma" id="coma" style="display: none">
+                                            <input class="btn btn-outline-info" type="submit" value="Exportar CSV ( : )"
+                                                id="btnCsvM">
+                                        </form>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="col">
+            <div class="form-container">
+                <h3 class="text-center">Detalle de las Ventas</h3>
+                <table>
+                    <tr>
+                        <td rowspan="10">
+                            <table class="table table-sm" id="tableDetalle">
+                                <thead>
+                                    <tr>
+                                        <th style="display: none">id</th>
+                                        <th>Cantidad</th>
+                                        <th>Medicamento</th>
+                                        <th>#Ref. Venta</th>
+                                        <th>Opción</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="listaDetalle">
+
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

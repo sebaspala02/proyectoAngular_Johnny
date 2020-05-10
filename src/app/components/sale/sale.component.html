@@ -1,0 +1,280 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col">
+            <div class="form-containerD">
+                <h1 class="text-center">Lista de Medicamentos</h1>
+                <table>
+                    <tr>
+                        <td rowspan="10">
+                            <table class="table table-sm" id="tableMedis">
+                                <thead>
+                                    <tr>
+                                        <th style="display: none">id</th>
+                                        <th>Nombre</th>
+                                        <th>Descripción</th>
+                                        <th>Fecha de Vencimiento</th>
+                                        <th>Cantidad</th>
+                                        <th>Fecha de Creación</th>
+                                        <th>Precio</th>
+                                        <th>Usuario</th>
+                                        <th>Laboratorio</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="listaMedi">
+
+                                </tbody>
+                            </table>
+                            <table>
+                                <tr>
+                                    <td>
+                                        <form name="formPDF" method="post" target="_blank"
+                                            action="./controller/ctlReporte.php">
+                                            <input type="text" id="txtReporteM" style="display: none" value="Medi(0)"
+                                                name="tabla">
+                                            <input type="text" id="nomTabla" style="display: none" value="Medicamentos"
+                                                name="nomTabla">
+                                            <input class="btn btn-outline-info" type="submit" value="Generar PDF"
+                                                id="btnPdfM">
+                                        </form>
+                                    </td>
+                                    <td>
+                                        <form name="formPDF" method="post" target="_blank"
+                                            action="./controller/ctlExportar.php">
+                                            <input type="text" id="txtReporteU" style="display: none" value="Medi(0)"
+                                                name="tabla">
+                                            <input type="text" id="nomTabla" style="display: none" value="Medicamentos"
+                                                name="nomTabla">
+                                            <input type="text" value="," name="coma" id="coma" style="display: none">
+                                            <input class="btn btn-outline-info" type="submit"
+                                                value="Exportar CSV con ( , )" id="btnCsvM">
+                                        </form>
+                                    </td>
+                                    <td>
+                                        <form name="formPDF" method="post" target="_blank"
+                                            action="./controller/ctlExportar.php">
+                                            <input type="text" id="txtReporteU" style="display: none" value="Medi(0)"
+                                                name="tabla">
+                                            <input type="text" id="nomTabla" style="display: none" value="Medicamentos"
+                                                name="nomTabla">
+                                            <input type="text" value=";" name="coma" id="coma" style="display: none">
+                                            <input class="btn btn-outline-info" type="submit"
+                                                value="Exportar CSV con ( ; )" id="btnCsvM">
+                                        </form>
+                                    </td>
+                                    <td>
+                                        <form name="formPDF" method="post" target="_blank"
+                                            action="./controller/ctlExportar.php">
+                                            <input type="text" id="txtReporteU" style="display: none" value="Medi(0)"
+                                                name="tabla">
+                                            <input type="text" id="nomTabla" style="display: none" value="Medicamentos"
+                                                name="nomTabla">
+                                            <input type="text" value=":" name="coma" id="coma" style="display: none">
+                                            <input class="btn btn-outline-info" type="submit"
+                                                value="Exportar CSV con ( : )" id="btnCsvM">
+                                        </form>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <!-- car shopping -->
+        <div class="col">
+            <div class="form-containerD">
+                <h1 class="text-center">Carrito de Compra</h1>
+                <table class="table table-sm" id="tableRealizarV">
+                    <thead>
+                        <input type="text" id="txtIddetalleventa" style="display: none" value="">
+                        <label for=""><b>Cliente: &nbsp;</b></label>
+                        <select class="form-control" id="txtIdClienteVenta" name="laboratorio"
+                            style="display: inline-block; width: 40%;"></select>
+                        <tr>
+                            <th style="display: none">id</th>
+                            <th>Medicamento</th>
+                            <th>Laboratorio</th>
+                            <th>Cantidad</th>
+                            <th>Inventario</th>
+                            <th>Precio/Unitario</th>
+                            <th>Accion</th>
+                        </tr>
+                    </thead>
+                    <tbody id="bodyTableV">
+                    </tbody>
+                    <tr>
+                        <td>
+                            <label for=""><b>Precio Total: &nbsp;&nbsp;</b></label>
+                            <input type="number" name="txtPrecioVenta" id="precioVenta" placeholder="Precio Total"
+                                readonly>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input class="btn btn-success" type="button" value="Comprar" id="btnCompra">
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="element" style="display: none;">
+    <div class="container">
+        <div class="row mx-md-n5">
+            <div class="col px-md-5">
+                <div class="form-container">
+                    <h1>Gestionar Cliente</h1>
+                    <!-- (ngSubmit)="onSaveForm()" -->
+                    <form class="form" #clientForm="ngForm">
+                        <input type="text" id="idClient" style="display: none" value="">
+
+                        <b> <label for="nombre">Nombre <a style="color: red;">*</a></label></b>
+                        <input id="nombre" name="name" type="text" placeholder="Nombre" class="form-control" required
+                            autofocus>
+
+                        <b> <label for="lastName">Apellido <a style="color: red;">*</a></label></b>
+                        <input id="lastName" name="lastName" type="text" placeholder="Apellido" class="form-control"
+                            required autofocus>
+
+                        <b> <label for="inputCedula">Cedula <a style="color: red;">*</a></label></b>
+                        <input type="number" id="inputCedula" class="form-control" placeholder="Cedula" required
+                            autofocus>
+
+                        <b> <label for="inputCreation">Fecha de Nacimiento <a style="color: red;">*</a></label></b>
+                        <input type="date" id="inputCreation" class="form-control" placeholder="Fecha de Creación"
+                            required autofocus>
+
+                        <div class="mx-auto" style="width: 230px;">
+                            <tr>&nbsp;</tr>
+                            <tr>
+                                <td class="pRigth">
+                                    <button type="submit" class="btn btn-success btn-block"
+                                        [disabled]="clientForm.invalid"><b>Guardar</b></button>
+                                    <!-- btn-send -->
+                                </td>
+                                <td class="pRigth">
+                                    <button type="submit" class="btn btn-warning btn-block"
+                                        [disabled]="clientForm.invalid"><b>Actualizar</b></button>
+                                </td>
+                            </tr>
+                            <tr>&nbsp;</tr>
+                            <tr>
+                                <td class="pRigth">
+                                    <button type="submit" class="btn btn-danger btn-block"
+                                        [disabled]="clientForm.invalid"><b>Eliminar</b></button>
+                                    <!-- btn-send -->
+                                </td>
+                                <td class="pRigth">
+                                    <button type="submit" class="btn btn-outline-dark btn-block"
+                                        [disabled]="clientForm.invalid"><b>Limpiar</b></button>
+                                </td>
+                            </tr>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col px-md-5">
+                <div class="form-containerD">
+                    <h1 class="text-center">Datos Cliente</h1>
+                    <table>
+                        <tr>
+                            <td rowspan="10">
+                                <table class="table table-hover" id="tableClientes">
+                                    <thead>
+                                        <tr>
+                                            <th style="display: none">id</th>
+                                            <th>Nombre</th>
+                                            <th>Apellido</th>
+                                            <th>Cedula</th>
+                                            <th>Sexo</th>
+                                            <th>Fecha Nacimiento</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="listaCliente">
+
+                                    </tbody>
+                                </table>
+                                <table>
+                                    <tr>
+                                        <td>
+                                            <form name="formPDF" method="post" target="_blank"
+                                                action="./controller/ctlReporte.php">
+                                                <input type="text" id="txtReporteC" style="display: none"
+                                                    value="Cliente(0)" name="tabla">
+                                                <input type="text" id="nomTabla" style="display: none" value="Clientes"
+                                                    name="nomTabla">
+                                                <input style="width: 100%" class="btn btn-outline-info" type="submit"
+                                                    value="Generar PDF" id="btnPdfC">
+                                            </form>
+                                        </td>
+                                        <td>
+                                            <form name="formPDF" method="post" target="_blank"
+                                                action="./controller/ctlExportar.php">
+                                                <input type="text" id="txtReporteU" style="display: none"
+                                                    value="Cliente(0)" name="tabla">
+                                                <input type="text" id="nomTabla" style="display: none" value="Clientes"
+                                                    name="nomTabla">
+                                                <input type="text" value="," name="coma" id="coma"
+                                                    style="display: none">
+                                                <input class="btn btn-outline-info" type="submit"
+                                                    value="Exportar CSV con ( , )" id="btnCsvC">
+                                            </form>
+                                        </td>
+                                        <td>
+                                            <form name="formPDF" method="post" target="_blank"
+                                                action="./controller/ctlExportar.php">
+                                                <input type="text" id="txtReporteU" style="display: none"
+                                                    value="Cliente(0)" name="tabla">
+                                                <input type="text" id="nomTabla" style="display: none" value="Clientes"
+                                                    name="nomTabla">
+                                                <input type="text" value=";" name="coma" id="coma"
+                                                    style="display: none">
+                                                <input class="btn btn-outline-info" type="submit"
+                                                    value="Exportar CSV con ( ; )" id="btnCsvM">
+                                            </form>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            &nbsp;
+                                        </td>
+                                        <td>
+
+                                            <form name="formPDF" method="post" target="_blank"
+                                                action="./controller/ctlExportar.php">
+                                                <input type="text" id="txtReporteU" style="display: none"
+                                                    value="Cliente(0)" name="tabla">
+                                                <input type="text" id="nomTabla" style="display: none" value="Clientes"
+                                                    name="nomTabla">
+                                                <input type="text" value=":" name="coma" id="coma"
+                                                    style="display: none">
+                                                <input class="btn btn-outline-info" type="submit"
+                                                    value="Exportar CSV con ( : )" id="btnCsvM">
+                                            </form>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="text-center">
+        <p>
+            <button onclick="hideClient()" class="btn btn-danger" id="hide"><i class="fa fa-eye"></i>
+                Cerrar Pestaña -
+            </button>
+        </p>
+    </div>
+</div>
+<br>
+<br>
+<div class="text-center">
+    <p>
+        <button onclick="showClient()" class="btn btn-primary" id="show"><i class="fa fa-eye"></i> Agregar Cliente
+            +</button>
+    </p>
+</div>

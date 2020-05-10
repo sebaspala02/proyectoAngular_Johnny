@@ -10,6 +10,12 @@ import { FooterComponent } from './components/footer/footer.component';
 import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
 import { UsersComponent } from './components/users/users.component';
+import { DrugComponent } from './components/drug/drug.component';
+import { SaleComponent } from './components/sale/sale.component';
+import { SaleListComponent } from './components/sale-list/sale-list.component';
+import { ReportsCSVComponent } from './components/reports-csv/reports-csv.component';
+import { ReportsC3Component } from './components/reports-c3/reports-c3.component';
+import { C3Component } from './components/c3/c3.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +24,13 @@ import { UsersComponent } from './components/users/users.component';
     FooterComponent,
     LoginComponent,
     HomeComponent,
-    UsersComponent
+    UsersComponent,
+    DrugComponent,
+    SaleComponent,
+    SaleListComponent,
+    ReportsCSVComponent,
+    ReportsC3Component,
+    C3Component
   ],
   imports: [
     BrowserModule,
