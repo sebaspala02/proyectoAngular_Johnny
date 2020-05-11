@@ -1,6 +1,6 @@
 <div class="izq">
     <div class="row">
-        <div class="col-sm-6">
+        <div class="col-sm-4">
             <div class="form-container">
                 <h1>Gestionar Usuario</h1>
                 <!-- (ngSubmit)="onSaveForm()" -->
@@ -91,88 +91,84 @@
                 </form>
             </div>
         </div>
-        <div class="dere">
-            <div class="col-sm-6">
-                <div class="form-containerD">
-                    <h1 class="text-center">Datos Usuarios</h1>
-                    <table>
-                        <tr>
-                            <td rowspan="10">
-                                <table class="table table-hover" id="tableUsuarios">
-                                    <thead>
-                                        <tr>
-                                            <th style="display: none">id</th>
-                                            <th>Cedula</th>
-                                            <th>Nombre</th>
-                                            <th>Apellido</th>
-                                            <th>Correo</th>
-                                            <th>Usuario</th>
-                                            <th>Password</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="listaUsuarios">
-
-                                    </tbody>
-                                </table>
-                                <table>
+        <div class="col-sm-8">
+            <div class="form-containerD">
+                <h1 class="text-center">Datos Usuarios</h1>
+                <table>
+                    <tr>
+                        <td rowspan="10">
+                            <table class="table table-hover" id="tableUsuarios">
+                                <thead>
                                     <tr>
-                                        <td>
-                                            <form name="formPDF" method="post" target="_blank"
-                                                action="./controller/ctlReporte.php">
-                                                <input type="text" id="txtReporteU" style="display: none"
-                                                    value="Usuario(0)" name="tabla">
-                                                <input type="text" id="nomTabla" style="display: none" value="Usuarios"
-                                                    name="nomTabla">
-                                                <input class="btn btn-outline-info" type="submit" value="Generar PDF"
-                                                    id="btnPdfU">
-                                            </form>
-                                        </td>
-                                        <td>
-                                            <form name="formPDF" method="post" target="_blank"
-                                                action="./controller/ctlExportar.php">
-                                                <input type="text" id="txtReporteU" style="display: none"
-                                                    value="Usuario(0)" name="tabla">
-                                                <input type="text" id="nomTabla" style="display: none" value="Usuarios"
-                                                    name="nomTabla">
-                                                <input type="text" value="," name="coma" id="coma"
-                                                    style="display: none">
-                                                <input class="btn btn-outline-info" type="submit"
-                                                    value="Exportar CSV con ( , )" id="btnCsvU">
-                                            </form>
-                                        </td>
-                                        <td>
-                                            <form name="formPDF" method="post" target="_blank"
-                                                action="./controller/ctlExportar.php">
-                                                <input type="text" id="txtReporteU" style="display: none"
-                                                    value="Usuario(0)" name="tabla">
-                                                <input type="text" id="nomTabla" style="display: none" value="Usuarios"
-                                                    name="nomTabla">
-                                                <input type="text" value=";" name="coma" id="coma"
-                                                    style="display: none">
-                                                <input class="btn btn-outline-info" type="submit"
-                                                    value="Exportar CSV con ( ; )" id="btnCsvU">
-                                            </form>
-                                        </td>
-                                        <td>
-                                            <form name="formPDF" method="post" target="_blank"
-                                                action="./controller/ctlExportar.php">
-                                                <input type="text" id="txtReporteU" style="display: none"
-                                                    value="Usuario(0)" name="tabla">
-                                                <input type="text" id="nomTabla" style="display: none" value="Usuarios"
-                                                    name="nomTabla">
-                                                <input type="text" value=":" name="coma" id="coma"
-                                                    style="display: none">
-                                                <input class="btn btn-outline-info" type="submit"
-                                                    value="Exportar CSV con ( : )" id="btnCsvU">
-                                            </form>
-                                        </td>
+                                        <th style="display: none">id</th>
+                                        <th>Cedula</th>
+                                        <th>Nombre</th>
+                                        <th>Apellido</th>
+                                        <th>Correo</th>
+                                        <th>Usuario</th>
+                                        <th>Password</th>
                                     </tr>
-                                </table>
-                            </td>
-                        </tr>
-                    </table>
-                </div>
+                                </thead>
+                                <tbody id="listaUsuarios">
+
+                                </tbody>
+                            </table>
+                            <table>
+                                <tr>
+                                    <td>
+                                        <form name="formPDF" method="post" target="_blank"
+                                            action="./controller/ctlReporte.php">
+                                            <input type="text" id="txtReporteU" style="display: none" value="Usuario(0)"
+                                                name="tabla">
+                                            <input type="text" id="nomTabla" style="display: none" value="Usuarios"
+                                                name="nomTabla">
+                                            <input class="btn btn-outline-info" type="submit" value="Generar PDF"
+                                                id="btnPdfU">
+                                        </form>
+                                    </td>
+                                    <td>
+                                        <form name="formPDF" method="post" target="_blank"
+                                            action="./controller/ctlExportar.php">
+                                            <input type="text" id="txtReporteU" style="display: none" value="Usuario(0)"
+                                                name="tabla">
+                                            <input type="text" id="nomTabla" style="display: none" value="Usuarios"
+                                                name="nomTabla">
+                                            <input type="text" value="," name="coma" id="coma" style="display: none">
+                                            <input class="btn btn-outline-info" type="submit"
+                                                value="Exportar CSV con ( , )" id="btnCsvU">
+                                        </form>
+                                    </td>
+                                    <td>
+                                        <form name="formPDF" method="post" target="_blank"
+                                            action="./controller/ctlExportar.php">
+                                            <input type="text" id="txtReporteU" style="display: none" value="Usuario(0)"
+                                                name="tabla">
+                                            <input type="text" id="nomTabla" style="display: none" value="Usuarios"
+                                                name="nomTabla">
+                                            <input type="text" value=";" name="coma" id="coma" style="display: none">
+                                            <input class="btn btn-outline-info" type="submit"
+                                                value="Exportar CSV con ( ; )" id="btnCsvU">
+                                        </form>
+                                    </td>
+                                    <td>
+                                        <form name="formPDF" method="post" target="_blank"
+                                            action="./controller/ctlExportar.php">
+                                            <input type="text" id="txtReporteU" style="display: none" value="Usuario(0)"
+                                                name="tabla">
+                                            <input type="text" id="nomTabla" style="display: none" value="Usuarios"
+                                                name="nomTabla">
+                                            <input type="text" value=":" name="coma" id="coma" style="display: none">
+                                            <input class="btn btn-outline-info" type="submit"
+                                                value="Exportar CSV con ( : )" id="btnCsvU">
+                                        </form>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
             </div>
         </div>
+
     </div>
 </div>
