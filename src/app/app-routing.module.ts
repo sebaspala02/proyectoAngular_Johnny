@@ -11,6 +11,9 @@ import { SaleListComponent } from './components/sale-list/sale-list.component';
 import { ReportsCSVComponent } from './components/reports-csv/reports-csv.component';
 import { ReportsC3Component } from './components/reports-c3/reports-c3.component';
 import { C3Component } from './components/c3/c3.component';
+import { ProfileComponent } from './components/profile/profile.component';
+import { Page404Component } from './components/page404/page404.component';
+import { ProfileClientComponent } from './components/profile-client/profile-client.component';
 
 
 const routes: Routes = [
@@ -53,6 +56,18 @@ const routes: Routes = [
   {
     path: "C3",
     component: C3Component
+  },
+  {
+    path: "profile",
+    component: ProfileComponent
+  },
+  {
+    path: "profileClient",
+    component: ProfileClientComponent
+  },
+  {
+    path: "*",
+    component: Page404Component
   },
   {
     path: "footer",

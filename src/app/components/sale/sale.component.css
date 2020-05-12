@@ -59,6 +59,7 @@ input[type="text"],
 input[type="email"],
 input[type="password"],
 input[type="number"],
+select,
 textarea {
   -webkit-transition: all 0, 30s ease-in-out;
   transition: all 0, 30s ease-in-out;
@@ -78,6 +79,7 @@ input[type="text"],
 input[type="email"],
 input[type="password"],
 input[type="number"],
+select,
 textarea:focus {
   -webkit-box-shadow: 0 0 5px #ccc;
   box-shadow: 0 0 5px #ccc;
