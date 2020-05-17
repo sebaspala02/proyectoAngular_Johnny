@@ -20,6 +20,11 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { Page404Component } from './components/page404/page404.component';
 import { ProfileClientComponent } from './components/profile-client/profile-client.component';
 
+/*IMPORT NECESARIO PARA LAS PETICIONES HTTP*/
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+
+// import { AuthService } from './services/auth.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,9 +46,11 @@ import { ProfileClientComponent } from './components/profile-client/profile-clie
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  // AuthService
+  providers: [HttpClientModule],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

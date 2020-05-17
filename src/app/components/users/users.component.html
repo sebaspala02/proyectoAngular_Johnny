@@ -5,10 +5,13 @@
                 <h1>Gestionar Usuarios</h1>
                 <!-- (ngSubmit)="onSaveForm()" -->
                 <form class="form" #userForm="ngForm">
+
+                    <input type="text" id="idusuario" name="idusuario" [(ngModel)]="usuariosData.idusuario"
+                        style="display: none">
+
                     <b> <label for="cedula">Cedula <a style="color: red;">*</a></label></b>
-                    <input type="text" id="idUsuario" style="display: none" value="">
-                    <input id="cedula" name="cedula" type="number" placeholder="Cedula" class="form-control" required
-                        autofocus>
+                    <input id="cedula" name="cedula" type="number" placeholder="Cedula" class="form-control"
+                        [(ngModel)]="usuariosData.cedula" required autofocus>
                     <!-- [(ngModel)]="users.cedula"
                      #cedula="ngModel" -->
                     <!-- <div class="alert-danger" *ngIf="name.invalid && (name.dirty || name.touched)">
@@ -21,8 +24,8 @@
                     </div> -->
 
                     <b> <label for="nombre">Nombre <a style="color: red;">*</a></label></b>
-                    <input id="nombre" name="name" type="text" placeholder="Nombre" class="form-control" required
-                        autofocus>
+                    <input id="nombre" name="nombre" type="text" placeholder="Nombre" class="form-control"
+                        [(ngModel)]="usuariosData.nombre" required autofocus>
                     <!-- [(ngModel)]="users.name" 
                         #name="ngModel"
                         -->
@@ -38,9 +41,9 @@
                             Value has to be a valid email address.
                         </div>
                         </div> -->
-                    <b> <label for="lastname">Apellido <a style="color: red;">*</a></label></b>
-                    <input id="lastname" name="lastname" type="text" placeholder="Apellido" class="form-control"
-                        required autofocus>
+                    <b> <label for="apellido">Apellido <a style="color: red;">*</a></label></b>
+                    <input id="apellido" name="apellido" type="text" placeholder="Apellido" class="form-control"
+                        [(ngModel)]="usuariosData.apellido" required autofocus>
                     <!-- [(ngModel)]="users.lastname" 
                         #lastname="ngModel"
                         -->
@@ -52,22 +55,33 @@
                             Message must be at least 10 characters long.
                         </div>
                         </div> -->
-                    <b> <label for="inputEmail">Correo <a style="color: red;">*</a></label></b>
-                    <input type="email" id="inputEmail" name="mail" placeholder="Correo" class="form-control" required
-                        autofocus>
+                    <b> <label for="correo">Correo <a style="color: red;">*</a></label></b>
+                    <input type="email" id="correo" name="correo" placeholder="Correo" class="form-control"
+                        [(ngModel)]="usuariosData.correo" required autofocus>
 
-                    <b> <label for="inputUser">Usuario <a style="color: red;">*</a></label></b>
-                    <input type="text" id="inputUser" class="form-control" placeholder="Usuario" required autofocus>
+                    <b> <label for="usuario">Usuario <a style="color: red;">*</a></label></b>
+                    <input type="text" id="usuario" name="usuario" class="form-control" placeholder="Usuario"
+                        [(ngModel)]="usuariosData.usuario" required autofocus>
 
-                    <b> <label for="inputPassword">Contraseña <a style="color: red;">*</a></label></b>
-                    <input type="password" id="inputPassword" class="form-control" placeholder="Contraseña" required>
+                    <b> <label for="password">Contraseña <a style="color: red;">*</a></label></b>
+                    <input type="password" id="password" name="password" class="form-control" placeholder="Contraseña"
+                        [(ngModel)]="usuariosData.password" required autofocus>
 
                     <!-- <label style="display: none;">espacio en blanco</label> -->
                     <div class="mx-auto" style="width: 230px;">
                         <tr>
+                            <td>
+                                <div class="form-group col-md-3">
+                                    <button type="button" class="btn btn-primary btn-lg"
+                                        [disabled]="!this.helperService.isValidValue(usuariosData.idusuario)"
+                                        (click)="buscarUsuario()">Buscar</button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
                             <td class="pRigth">
-                                <button type="submit" class="btn btn-success btn-block"
-                                    [disabled]="userForm.invalid"><b>Guardar</b></button>
+                                <button type="submit" class="btn btn-success btn-block" [disabled]="userForm.invalid"
+                                    (click)="guardarUsuario()"><b>Guardar</b></button>
                                 <!-- btn-send -->
                             </td>
                             <td class="pRigth">
@@ -100,7 +114,7 @@
                             <table class="table table-hover" id="tableUsuarios">
                                 <thead>
                                     <tr>
-                                        <th style="display: none">id</th>
+                                        <th>ID</th>
                                         <th>Cedula</th>
                                         <th>Nombre</th>
                                         <th>Apellido</th>
@@ -109,8 +123,18 @@
                                         <th>Password</th>
                                     </tr>
                                 </thead>
-                                <tbody id="listaUsuarios">
-
+                                <!-- <tbody id="listaUsuarios">
+                                </tbody> -->
+                                <tbody>
+                                    <tr *ngFor="let usuario of usuarios; index as i">
+                                        <th>{{ i + 1 }}</th>
+                                        <td>{{ usuario.cedula }}</td>
+                                        <td>{{ usuario.nombre }}</td>
+                                        <td>{{ usuario.apellido }}</td>
+                                        <td>{{ usuario.correo }}</td>
+                                        <td>{{ usuario.usuario }}</td>
+                                        <td>{{ usuario.password }}</td>
+                                    </tr>
                                 </tbody>
                             </table>
                             <table>
@@ -169,6 +193,23 @@
                 </table>
             </div>
         </div>
+    </div>
+</div>
 
+<div id="mdlSample" class="modal fade" role="dialog"
+    [ngStyle]="{ display: helperService.modalOpen ? 'block' : 'none', opacity: 1 }">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" style="color: white;">{{ helperService.modalTitle }}</h4>
+            </div>
+            <div class="modal-body">{{ helperService.modalContent }}</div>
+
+            <div class="modal-footer">
+                <button type="button" id="btnOK" class="btn btn-success" (click)="helperService.openModal(false)">
+                    <i class="fa fa-check fa-fw"></i> Ok
+                </button>
+            </div>
+        </div>
     </div>
 </div>
