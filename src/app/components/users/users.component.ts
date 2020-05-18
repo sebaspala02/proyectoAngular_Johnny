@@ -13,8 +13,11 @@ import { error } from '@angular/compiler/src/util';
 })
 export class UsersComponent implements OnInit {
 
-  usuarios: UserInterface[] = [];
-  usuariosData = {} as UserInterface;
+  // public IDusuario = null;
+
+  users: UserInterface[] = [];
+  usersData = {} as UserInterface;
+  idusuario = null;
 
   constructor
     (
@@ -33,102 +36,139 @@ export class UsersComponent implements OnInit {
   // };
 
   ngOnInit(): void {
-    this.listarUser();
+    this.readUser();
   }
 
-  listarUser() {
+  readUser() {
 
     /*Se llama al metodo de listar roles definido en el servicio*/
-    this.userService.listarUsers().subscribe(
+    this.userService.readUsers().subscribe(
       (data) => {
         let respuesta: any;
         respuesta = data;
+
+        // console.log("data listar");
+        // console.log(data);
 
         if (respuesta.msj === "Success") {
           /*Se convierte en un objeto JSON el listado de datos obtenido*/
-          this.usuarios = JSON.parse(respuesta.data);
+          this.users = JSON.parse(respuesta.data);
         } else {
-          this.usuarios = [];
+          this.users = [];
         }
       },
       (error) => {
         this.helperService.openModal(
           true,
-          "Info",
+          "Danger",
           "Error consumiendo el servicio"
         );
       }
     );
   }
 
-  guardarUsuario() {
-    /*Funcion que se encarga de almacenar la informacion del rol*/
-    let postDataObj = new FormData();
-    postDataObj.append("idusuario", this.usuariosData.idusuario + ' ');
-    postDataObj.append("cedula", this.usuariosData.cedula + ' ');
-    postDataObj.append("nombre", this.usuariosData.nombre);
-    postDataObj.append("apellido", this.usuariosData.apellido);
-    postDataObj.append("correo", this.usuariosData.correo);
-    postDataObj.append("usuario", this.usuariosData.usuario);
-    postDataObj.append("password", this.usuariosData.password + ' ');
+  emailValid(email: string): boolean {
+    let mailValido = false;
+    'use strict';
 
-    if (this.helperService.isValidValue(this.usuariosData.idusuario + ' ')) {
-      postDataObj.append("type", "save");
-    } else {
-      postDataObj.append("type", "update");
+    var EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+
+    if (email.match(EMAIL_REGEX)) {
+      mailValido = true;
     }
+    return mailValido;
+  }
 
-    this.userService.guardarUsers(postDataObj).subscribe(
-      (data) => {
-        let respuesta: any;
-        respuesta = data;
 
-        if (respuesta.res === "Success") {
-          this.helperService.openModal(true, "Info", "Guardado exitosamente");
-          this.listarUser();
-          // this.limpiarEstudiante();
-          location.reload();
-        } else {
+  createUser() {
+    if (this.emailValid(this.usersData.correo)) {
+
+      /*Funcion que se encarga de almacenar la informacion del rol*/
+      let postDataObj = new FormData();
+      postDataObj.append("idusuario", this.idusuario);
+      postDataObj.append("cedula", this.usersData.cedula);
+      postDataObj.append("nombre", this.usersData.nombre);
+      postDataObj.append("apellido", this.usersData.apellido);
+      postDataObj.append("correo", this.usersData.correo);
+      postDataObj.append("usuario", this.usersData.usuario);
+      postDataObj.append("password", this.usersData.password);
+
+      if (this.helperService.isValidValue(this.idusuario)) {
+        postDataObj.append("type", "update");
+      } else {
+        postDataObj.append("type", "save");
+      }
+
+      this.userService.createUsers(postDataObj).subscribe(
+        (data) => {
+          let respuesta: any;
+          respuesta = data;
+
+          if (respuesta.res === "Success") {
+            this.helperService.openModal(true, "Success", "Guardado exitosamente");
+            this.readUser();
+            // this.cleanUser();
+            location.reload();
+          } else {
+            this.helperService.openModal(
+              true,
+              "Danger",
+              "No se detecto ningun cambio en la base de datos"
+            );
+          }
+        },
+        (error) => {
           this.helperService.openModal(
             true,
-            "Info",
-            "No se detecto ningun cambio en la base de datos"
+            "Danger",
+            "Error consumiendo el servicio"
           );
         }
-      },
-      (error) => {
-        this.helperService.openModal(
-          true,
-          "Info",
-          "Error consumiendo el servicio"
-        );
-      }
-    );
+      );
+    } else {
+      // ingresar un correo  valido
+    }
   }
 
-  buscarUsuario() {
+  searchUser(idusuario) {
+
 
     let postDataObj = new FormData();
 
-    postDataObj.append("idusuario", this.usuariosData.idusuario + '');
+    postDataObj.append("idusuario", idusuario);
     postDataObj.append("type", "search");
 
-    this.userService.buscarUsers(postDataObj).subscribe(
+    // setea el id del usuario buscado
+    // this.IDusuario = idusuario;
+    this.idusuario = idusuario;
+
+    this.userService.searchUsers(postDataObj).subscribe(
       (data) => {
         let respuesta: any;
         respuesta = data;
 
+        // console.log("la data bitch");
+        // console.log(data);
+
         if (respuesta.msj === "Success") {
-          this.helperService.openModal(true, "Info", "Encontrado exitosamente");
-          this.usuariosData = JSON.parse(respuesta.data)[0];
+
+          // console.log("idsuaurio gino");
+          // console.log(idusuario);
+
+          this.helperService.openModal(true, "Success", "Encontrado exitosamente");
+          this.usersData = JSON.parse(respuesta.data)[0];
+
+          // console.log("userdata madier");
+          // console.log(this.usersData);
+
         } else {
-          this.helperService.openModal(true, "Info", "No se encontro");
+          this.helperService.openModal(true, "Danger", "No se encontro");
         }
       },
       (error) => {
         this.helperService.openModal(
           true,
-          "Info",
+          "Danger",
           "Error consumiendo el servicio"
         );
       }
@@ -138,27 +178,30 @@ export class UsersComponent implements OnInit {
 
 
 
-  eliminarUsuario() {
+  deleteUser() {
+
+    // console.log("delete idusuario");
+    // console.log(idusuario);
+
     /*Funcion que se encarga de almacenar la informacion del rol*/
     let postDataObj = new FormData();
-    postDataObj.append("idusuario", this.usuariosData.idusuario + '');
-
+    postDataObj.append("idusuario", this.idusuario);
     postDataObj.append("type", "delete");
 
-    this.userService.eliminarUsers(postDataObj).subscribe(
+    this.userService.deleteUsers(postDataObj).subscribe(
       (data) => {
         let respuesta: any;
         respuesta = data;
 
         if (respuesta.res === "Success") {
-          this.helperService.openModal(true, "Info", "Eliminado exitosamente");
-          this.listarUser();
-          // this.limpiarEstudiante();
+          this.helperService.openModal(true, "Success", "Eliminado exitosamente");
+          this.readUser();
+          // this.cleanUser();
           location.reload();
         } else {
           this.helperService.openModal(
             true,
-            "Info",
+            "Danger",
             "No se encontro el registro a eliminar"
           );
         }
@@ -166,11 +209,16 @@ export class UsersComponent implements OnInit {
       (error) => {
         this.helperService.openModal(
           true,
-          "Info",
+          "Danger",
           "Error consumiendo el servicio"
         );
       }
     );
+  }
+
+  cleanUser() {
+    this.idusuario = null;
+    this.usersData = {} as UserInterface;
   }
 
 }

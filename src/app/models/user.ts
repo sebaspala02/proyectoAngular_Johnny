@@ -1,9 +1,9 @@
 export interface UserInterface {
-    idusuario: Number;
-    cedula: Number;
+    idusuario: string;
+    cedula: string;
     nombre: string;
     apellido: string;
     correo: string;
     usuario: string;
-    password: Number;
+    password: string;
 }

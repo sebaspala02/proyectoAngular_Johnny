@@ -19,29 +19,22 @@ export class UserService {
       public helperService: HelperService
     ) { }
 
-  listarUsers() {
-
-    // return this.http.get<UserInterface>(
-    //   this.baseUrl + "/controller/ctlUsuario.php?type=list"
-    // );
-
+  readUsers() {
     const url_api = `http://localhost/taller1ElectivaII/controller/ctlUsuario.php?type=list`;
     return this.http.get<UserInterface>(url_api);
-
   }
 
-  guardarUsers(postData: any) {
-
+  createUsers(postData: any) {
     const url_api = `http://localhost/taller1ElectivaII/controller/ctlUsuario.php`;
     return this.http.post<any>(url_api, postData);
   }
 
-  buscarUsers(postData: any) {
+  searchUsers(postData: any) {
     const url_api = `http://localhost/taller1ElectivaII/controller/ctlUsuario.php`;
     return this.http.post<any>(url_api, postData);
   }
 
-  eliminarUsers(postData: any) {
+  deleteUsers(postData: any) {
     const url_api = `http://localhost/taller1ElectivaII/controller/ctlUsuario.php`;
     return this.http.post<any>(url_api, postData);
   }

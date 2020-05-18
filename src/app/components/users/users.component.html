@@ -4,101 +4,74 @@
             <div class="form-container">
                 <h1>Gestionar Usuarios</h1>
                 <!-- (ngSubmit)="onSaveForm()" -->
-                <form class="form" #userForm="ngForm">
+                <form class="needs-validation" #userForm="ngForm">
 
-                    <input type="text" id="idusuario" name="idusuario" [(ngModel)]="usuariosData.idusuario"
-                        style="display: none">
+                    <input style="display: none" type="text" id="idusuario" name="idusuario" [(ngModel)]="idusuario">
 
-                    <b> <label for="cedula">Cedula <a style="color: red;">*</a></label></b>
-                    <input id="cedula" name="cedula" type="number" placeholder="Cedula" class="form-control"
-                        [(ngModel)]="usuariosData.cedula" required autofocus>
-                    <!-- [(ngModel)]="users.cedula"
-                     #cedula="ngModel" -->
-                    <!-- <div class="alert-danger" *ngIf="name.invalid && (name.dirty || name.touched)">
-                    <div class="container-error-message" *ngIf="name.errors.required">
-                            Name is required
-                        </div>
-                        <div class="container-error-message" *ngIf="name.errors.minlength">
-                            Name must be at least 5 characters long.
-                        </div>
-                    </div> -->
+                    <b> <label for="validationCustom01">Cedula <a style="color: red;">*</a></label></b>
+                    <input id="validationCustom01" name="cedula" type="number" placeholder="Cedula" class="form-control"
+                        [(ngModel)]="usersData.cedula" required autofocus>
+                    <div class="valid-feedback">
+                        Ingresado correcatmente!
+                    </div>
 
-                    <b> <label for="nombre">Nombre <a style="color: red;">*</a></label></b>
-                    <input id="nombre" name="nombre" type="text" placeholder="Nombre" class="form-control"
-                        [(ngModel)]="usuariosData.nombre" required autofocus>
-                    <!-- [(ngModel)]="users.name" 
-                        #name="ngModel"
-                        -->
-                    <!-- <div class="alert-danger" *ngIf="email.invalid && (email.dirty || email.touched)">
-                        <div class="container-error-message" *ngIf="email.errors.required">
-                            Email is required
-                        </div>
-                        <div class="container-error-message" *ngIf="email.errors.minlength">
-                            Email must be at least 5 characters long.
-                        </div>
-                        <div class="container-error-message"
-                            *ngIf="(email.dirty || email.touched) && email.invalid && email.errors.pattern">
-                            Value has to be a valid email address.
-                        </div>
-                        </div> -->
-                    <b> <label for="apellido">Apellido <a style="color: red;">*</a></label></b>
-                    <input id="apellido" name="apellido" type="text" placeholder="Apellido" class="form-control"
-                        [(ngModel)]="usuariosData.apellido" required autofocus>
-                    <!-- [(ngModel)]="users.lastname" 
-                        #lastname="ngModel"
-                        -->
-                    <!-- <div class="alert-danger" *ngIf="message.invalid && (message.dirty || message.touched)">
-                        <div class="container-error-message" *ngIf="message.errors.required">
-                            Message is required
-                        </div>
-                        <div class="container-error-message" *ngIf="message.errors.minlength">
-                            Message must be at least 10 characters long.
-                        </div>
-                        </div> -->
-                    <b> <label for="correo">Correo <a style="color: red;">*</a></label></b>
-                    <input type="email" id="correo" name="correo" placeholder="Correo" class="form-control"
-                        [(ngModel)]="usuariosData.correo" required autofocus>
+                    <b> <label for="validationCustom02">Nombre <a style="color: red;">*</a></label></b>
+                    <input id="validationCustom02" name="nombre" type="text" placeholder="Nombre" class="form-control"
+                        [(ngModel)]="usersData.nombre" required autofocus>
+                    <div class="valid-feedback">
+                        Ingresado correcatmente!
+                    </div>
 
-                    <b> <label for="usuario">Usuario <a style="color: red;">*</a></label></b>
-                    <input type="text" id="usuario" name="usuario" class="form-control" placeholder="Usuario"
-                        [(ngModel)]="usuariosData.usuario" required autofocus>
+                    <b> <label for="validationCustom03">Apellido <a style="color: red;">*</a></label></b>
+                    <input id="validationCustom03" name="apellido" type="text" placeholder="Apellido"
+                        class="form-control" [(ngModel)]="usersData.apellido" required autofocus>
+                    <div class="valid-feedback">
+                        Ingresado correcatmente!
+                    </div>
 
-                    <b> <label for="password">Contraseña <a style="color: red;">*</a></label></b>
-                    <input type="password" id="password" name="password" class="form-control" placeholder="Contraseña"
-                        [(ngModel)]="usuariosData.password" required autofocus>
+                    <b> <label for="inputEmail">Correo <a style="color: red;">*</a></label></b>
+                    <input type="email" id="inputEmail" name="correo" placeholder="Correo" class="form-control"
+                        [(ngModel)]="usersData.correo" required autofocus>
+                    <div class="invalid-feedback">
+                        Ingresa un correo valido con las caracteristicas de " @ " y " .com "
+                    </div>
 
-                    <!-- <label style="display: none;">espacio en blanco</label> -->
+                    <b> <label for="validationCustom04">Usuario <a style="color: red;">*</a></label></b>
+                    <input type="text" id="validationCustom04" name="usuario" class="form-control" placeholder="Usuario"
+                        [(ngModel)]="usersData.usuario" required autofocus>
+                    <div class="valid-feedback">
+                        Ingresado correcatmente!
+                    </div>
+
+                    <b> <label for="validationCustom05">Contraseña <a style="color: red;">*</a></label></b>
+                    <input type="password" id="validationCustom05" name="password" class="form-control"
+                        placeholder="Contraseña" [(ngModel)]="usersData.password" required autofocus>
+                    <div class="valid-feedback">
+                        Ingresado correcatmente!
+                    </div>
+
                     <div class="mx-auto" style="width: 230px;">
-                        <tr>
-                            <td>
-                                <div class="form-group col-md-3">
-                                    <button type="button" class="btn btn-primary btn-lg"
-                                        [disabled]="!this.helperService.isValidValue(usuariosData.idusuario)"
-                                        (click)="buscarUsuario()">Buscar</button>
-                                </div>
-                            </td>
-                        </tr>
                         <tr>
                             <td class="pRigth">
                                 <button type="submit" class="btn btn-success btn-block" [disabled]="userForm.invalid"
-                                    (click)="guardarUsuario()"><b>Guardar</b></button>
+                                    (click)="createUser()"><b>Guardar</b></button>
                                 <!-- btn-send -->
                             </td>
                             <td class="pRigth">
-                                <button type="submit" class="btn btn-warning btn-block"
-                                    [disabled]="userForm.invalid"><b>Actualizar</b></button>
+                                <button type="submit" class="btn btn-warning btn-block" [disabled]="userForm.invalid"
+                                    (click)="createUser()"><b>Actualizar</b></button>
                             </td>
                         </tr>
                         <tr>&nbsp;</tr>
                         <tr>
                             <td class="pRigth">
-                                <button type="submit" class="btn btn-danger btn-block"
-                                    [disabled]="userForm.invalid"><b>Eliminar</b></button>
+                                <button type="submit" class="btn btn-danger btn-block" [disabled]="userForm.invalid"
+                                    (click)="deleteUser()"><b>Eliminar</b></button>
                                 <!-- btn-send -->
                             </td>
                             <td class="pRigth">
                                 <button type="submit" class="btn btn-outline-dark btn-block"
-                                    [disabled]="userForm.invalid"><b>Limpiar</b></button>
+                                    [disabled]="userForm.invalid" (click)="cleanUser()"><b>Limpiar</b></button>
                             </td>
                         </tr>
                     </div>
@@ -126,8 +99,10 @@
                                 <!-- <tbody id="listaUsuarios">
                                 </tbody> -->
                                 <tbody>
-                                    <tr *ngFor="let usuario of usuarios; index as i">
+                                    <tr *ngFor="let usuario of users; index as i"
+                                        (click)="searchUser(usuario.idusuario)">
                                         <th>{{ i + 1 }}</th>
+                                        <th style="display: none">{{ usuario.idusuario }}</th>
                                         <td>{{ usuario.cedula }}</td>
                                         <td>{{ usuario.nombre }}</td>
                                         <td>{{ usuario.apellido }}</td>
@@ -196,19 +171,18 @@
     </div>
 </div>
 
-<div id="mdlSample" class="modal fade" role="dialog"
-    [ngStyle]="{ display: helperService.modalOpen ? 'block' : 'none', opacity: 1 }">
-    <div class="modal-dialog modal-lg">
+<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"
+    [ngStyle]="{ display: helperService.modalOpen ? 'block' : 'none', opacity: 2 }">
+    <div class="modal-dialog modal-sm">
         <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title" style="color: white;">{{ helperService.modalTitle }}</h4>
+            <div class="modal-header alert-success">
+                <h4 class="modal-title alert-success text-center" id="exampleModalLabel">{{ helperService.modalTitle }}
+                </h4>
             </div>
-            <div class="modal-body">{{ helperService.modalContent }}</div>
-
-            <div class="modal-footer">
-                <button type="button" id="btnOK" class="btn btn-success" (click)="helperService.openModal(false)">
-                    <i class="fa fa-check fa-fw"></i> Ok
-                </button>
+            <div class="modal-body alert-success text-center">{{ helperService.modalContent }}</div>
+            <div class="modal-footer alert-success">
+                <button type="button" id="btnOK" class="btn btn-success" (click)="helperService.openModal(false)"
+                    data-dismiss="modal">cerrar</button>
             </div>
         </div>
     </div>
