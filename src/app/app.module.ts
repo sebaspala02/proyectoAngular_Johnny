@@ -19,6 +19,7 @@ import { C3Component } from './components/c3/c3.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { Page404Component } from './components/page404/page404.component';
 import { ProfileClientComponent } from './components/profile-client/profile-client.component';
+import { SupplierComponent } from './components/supplier/supplier.component';
 
 /*IMPORT NECESARIO PARA LAS PETICIONES HTTP*/
 import { HttpClient, HttpClientModule } from '@angular/common/http';
@@ -41,7 +42,8 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     C3Component,
     ProfileComponent,
     Page404Component,
-    ProfileClientComponent
+    ProfileClientComponent,
+    SupplierComponent
   ],
   imports: [
     BrowserModule,

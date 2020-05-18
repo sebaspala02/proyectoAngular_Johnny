@@ -1,0 +1,150 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col col-md-4">
+            <div class="form-container">
+                <h2>Gestionar Proveedores</h2>
+                <!-- (ngSubmit)="onSaveForm()" -->
+                <form class="form" #supplierForm="ngForm">
+
+                    <input type="text" id="idproveedor" name="idproveedor" [(ngModel)]="proveedorData.idproveedor"
+                        style="display: none">
+
+                    <b> <label for="nit">NIT <a style="color: red;">*</a></label></b>
+                    <input id="nit" name="nit" type="number" placeholder="NIT" class="form-control"
+                        [(ngModel)]="proveedorData.nit" required autofocus>
+
+                    <b> <label for="nombre">Nombre <a style="color: red;">*</a></label></b>
+                    <input id="nombre" name="nombre" type="text" placeholder="Nombre" class="form-control"
+                        [(ngModel)]="proveedorData.nombre" required autofocus>
+                    <b> <label for="ciudad">Ciudad <a style="color: red;">*</a></label></b>
+                    <input type="email" id="ciudad" name="ciudad" placeholder="Ciudad" class="form-control"
+                        [(ngModel)]="proveedorData.ciudad" required autofocus>
+                    <b> <label for="direccion">Direccion <a style="color: red;">*</a></label></b>
+                    <input id="direccion" name="direccion" type="text" placeholder="Direccion" class="form-control"
+                        [(ngModel)]="proveedorData.direccion" required autofocus>
+
+                    <b> <label for="telefono">Telefono <a style="color: red;">*</a></label></b>
+                    <input type="number" id="telefono" name="telefono" class="form-control" placeholder="Telefono"
+                        [(ngModel)]="proveedorData.telefono" required autofocus>
+
+                    <!-- <tr>
+                        <td>
+                            <div class="form-group col-md-3">
+                                <button type="button" class="btn btn-primary btn-lg"
+                                    [disabled]="!this.helperService.isValidValue(proveedorData.idproveedor)"
+                                    (click)="findSupplier(1)">Buscar</button>
+                            </div>
+                        </td>
+                    </tr> -->
+                    <tr>
+                        <td class="pRigth">
+                            <button type="submit" class="btn btn-success btn-block" [disabled]="supplierForm.invalid"
+                                (click)="saveSupplier()"><b>Guardar</b></button>
+                            <!-- btn-send -->
+                        </td>
+                        <td class="pRigth">
+                            <button type="submit" class="btn btn-warning btn-block" [disabled]="supplierForm.invalid"
+                                (click)="saveSupplier()"><b>Actualizar</b></button>
+                        </td>
+                    </tr>
+                    <tr>&nbsp;</tr>
+                    <tr>
+                        <td class="pRigth">
+                            <button type="submit" class="btn btn-danger btn-block" [disabled]="supplierForm.invalid"
+                                (click)="deleteSupplier()">
+                                <b>Eliminar</b></button>
+                            <!-- btn-send -->
+                        </td>
+                        <td class="pRigth">
+                            <button type="submit" class="btn btn-outline-dark btn-block"
+                                [disabled]="supplierForm.invalid"
+                                (click)="cleanSupplier()"><b>Limpiar</b></button>
+                        </td>
+                    </tr>
+                    <!-- </div> -->
+                </form>
+            </div>
+        </div>
+        <div class="col col-md-7">
+            <div class="form-containerD">
+                <h2 class="text-center">Proveedores</h2>
+                <table>
+                    <tr>
+                        <td rowspan="10">
+                            <table class="table table-hover" id="tableProveedores">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>NIT</th>
+                                        <th>Nombre</th>
+                                        <th>Ciudad</th>
+                                        <th>Direccion</th>
+                                        <th>Telefono</th>
+                                    </tr>
+                                </thead>
+                                <!-- <tbody id="listaUsuarios">
+                                </tbody> -->
+                                <tbody>
+                                    <tr *ngFor="let proveedor of proveedores; index as i"
+                                        (click)="findSupplier(proveedor.id)">
+                                        <th>{{ i + 1 }}</th>
+                                        <td>{{ proveedor.nit }}</td>
+                                        <td>{{ proveedor.nombre }}</td>
+                                        <td>{{ proveedor.direccion }}</td>
+                                        <td>{{ proveedor.ciudad }}</td>
+                                        <td>{{ proveedor.telefono }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <table>
+                                <tr>
+                                    <td>
+                                        <form name="formPDF" method="post" target="_blank"
+                                            action="./controller/ctlReporte.php">
+                                            <input type="text" id="txtReporteU" style="display: none"
+                                                value="Proveedor(0)" name="tabla">
+                                            <input type="text" id="nomTabla" style="display: none" value="Proveedores"
+                                                name="nomTabla">
+                                            <input class="btn btn-outline-info" type="submit" value="Generar PDF"
+                                                id="btnPdfU">
+                                        </form>
+                                    </td>
+                                    <td>
+                                        <form name="formPDF" method="post" target="_blank"
+                                            action="./controller/ctlExportar.php">
+                                            <input type="text" id="txtReporteU" style="display: none"
+                                                value="Proveedor(0)" name="tabla">
+                                            <input type="text" id="nomTabla" style="display: none" value="Proveedores"
+                                                name="nomTabla">
+                                            <input type="text" value=";" name="coma" id="coma" style="display: none">
+                                            <input class="btn btn-outline-info" type="submit"
+                                                value="Exportar CSV con ( ; )" id="btnCsvU">
+                                        </form>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="mdlSample" class="modal fade" role="dialog"
+    [ngStyle]="{ display: helperService.modalOpen ? 'block' : 'none', opacity: 1 }">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" style="color: white;">{{ helperService.modalTitle }}</h4>
+            </div>
+            <div class="modal-body">{{ helperService.modalContent }}</div>
+
+            <div class="modal-footer">
+                <button type="button" id="btnOK" class="btn btn-success" (click)="helperService.openModal(false)">
+                    <i class="fa fa-check fa-fw"></i> Ok
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

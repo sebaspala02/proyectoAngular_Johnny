@@ -14,6 +14,7 @@ import { C3Component } from './components/c3/c3.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { Page404Component } from './components/page404/page404.component';
 import { ProfileClientComponent } from './components/profile-client/profile-client.component';
+import { SupplierComponent } from './components/supplier/supplier.component';
 
 
 const routes: Routes = [
@@ -72,6 +73,10 @@ const routes: Routes = [
   {
     path: "footer",
     component: FooterComponent
+  },
+  {
+    path: "suppliers",
+    component: SupplierComponent
   },
   {
     path: "",
