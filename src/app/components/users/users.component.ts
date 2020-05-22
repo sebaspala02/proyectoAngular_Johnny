@@ -5,6 +5,8 @@ import { HelperService } from 'src/app/util/HelperService';
 import { UserInterface } from "src/app/models/user";
 import { UserService } from "src/app/services/user.service";
 import { error } from '@angular/compiler/src/util';
+import { ForeignService } from '../../services/foreign.service';
+import { TypeUserInterface } from '../../models/typeUser';
 
 @Component({
   selector: 'app-users',
@@ -19,10 +21,14 @@ export class UsersComponent implements OnInit {
   usersData = {} as UserInterface;
   idusuario = null;
 
+  typeUsers: TypeUserInterface[] = [];
+  typeUsersData = {} as TypeUserInterface;
+
   constructor
     (
       public helperService: HelperService,
-      public userService: UserService
+      public userService: UserService,
+      public foreignService: ForeignService
     ) { }
 
   // public user: UserInterface = {
@@ -37,6 +43,7 @@ export class UsersComponent implements OnInit {
 
   ngOnInit(): void {
     this.readUser();
+    this.foreignTypeUser();
   }
 
   readUser() {
@@ -67,6 +74,35 @@ export class UsersComponent implements OnInit {
     );
   }
 
+  foreignTypeUser() {
+    /*Se llama al metodo de listar roles definido en el servicio*/
+    this.foreignService.foreignTypeUsers().subscribe(
+      (data) => {
+        let respuesta: any;
+        respuesta = data;
+
+        // console.log("data listar");
+        // console.log(data);
+
+        if (respuesta.msj === "Success") {
+          /*Se convierte en un objeto JSON el listado de datos obtenido*/
+          this.typeUsers = JSON.parse(respuesta.data);
+        } else {
+          this.typeUsers = [];
+        }
+      },
+      (error) => {
+        console.log("error listar");
+        console.log(error);
+        this.helperService.openModal(
+          true,
+          "Info",
+          "Error consumiendo el servicio"
+        );
+      }
+    );
+  }
+
   emailValid(email: string): boolean {
     let mailValido = false;
     'use strict';
@@ -90,6 +126,7 @@ export class UsersComponent implements OnInit {
       postDataObj.append("nombre", this.usersData.nombre);
       postDataObj.append("apellido", this.usersData.apellido);
       postDataObj.append("correo", this.usersData.correo);
+      postDataObj.append("tipoUsuario_idTipoUsuario", this.usersData.tipousuario);
       postDataObj.append("usuario", this.usersData.usuario);
       postDataObj.append("password", this.usersData.password);
 

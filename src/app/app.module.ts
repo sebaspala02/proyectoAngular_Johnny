@@ -22,6 +22,7 @@ import { ProfileClientComponent } from './components/profile-client/profile-clie
 
 /*IMPORT NECESARIO PARA LAS PETICIONES HTTP*/
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { LaboratoryComponent } from './components/laboratory/laboratory.component';
 
 // import { AuthService } from './services/auth.service';
 
@@ -41,7 +42,8 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     C3Component,
     ProfileComponent,
     Page404Component,
-    ProfileClientComponent
+    ProfileClientComponent,
+    LaboratoryComponent
   ],
   imports: [
     BrowserModule,
