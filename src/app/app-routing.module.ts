@@ -15,6 +15,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { Page404Component } from './components/page404/page404.component';
 import { ProfileClientComponent } from './components/profile-client/profile-client.component';
 import { SupplierComponent } from './components/supplier/supplier.component';
+import { LaboratoryComponent } from './components/laboratory/laboratory.component';
 
 
 const routes: Routes = [
@@ -65,6 +66,10 @@ const routes: Routes = [
   {
     path: "profileClient",
     component: ProfileClientComponent
+  },
+  {
+    path: "laboratory",
+    component: LaboratoryComponent
   },
   {
     path: "*",

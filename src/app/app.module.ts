@@ -23,6 +23,7 @@ import { SupplierComponent } from './components/supplier/supplier.component';
 
 /*IMPORT NECESARIO PARA LAS PETICIONES HTTP*/
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { LaboratoryComponent } from './components/laboratory/laboratory.component';
 
 // import { AuthService } from './services/auth.service';
 
@@ -43,7 +44,8 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     ProfileComponent,
     Page404Component,
     ProfileClientComponent,
-    SupplierComponent
+    SupplierComponent,
+    LaboratoryComponent
   ],
   imports: [
     BrowserModule,

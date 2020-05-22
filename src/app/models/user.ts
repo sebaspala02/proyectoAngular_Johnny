@@ -4,6 +4,7 @@ export interface UserInterface {
     nombre: string;
     apellido: string;
     correo: string;
+    tipousuario: string;
     usuario: string;
     password: string;
 }
