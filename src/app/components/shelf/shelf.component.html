@@ -2,60 +2,29 @@
     <div class="row">
         <div class="col col-md-4">
             <div class="form-container">
-                <h2>Gestionar Usuarios</h2>
+                <h2>Gestionar Estanterias</h2>
                 <!-- (ngSubmit)="onSaveForm()" -->
-                <form class="needs-validation" #userForm="ngForm">
+                <form class="needs-validation" #shelfForm="ngForm">
 
-                    <input style="display: none" type="text" id="idusuario" name="idusuario" [(ngModel)]="idusuario">
+                    <input style="display: none" type="text" id="idestante" name="idestante" [(ngModel)]="shelfsData.idestante">
 
-                    <b> <label for="validationCustom01">Cedula <a style="color: red;">*</a></label></b>
-                    <input id="validationCustom01" name="cedula" type="number" placeholder="Cedula" class="form-control"
-                        [(ngModel)]="usersData.cedula" required autofocus>
+                    <b> <label for="validationCustom01">Codigo <a style="color: red;">*</a></label></b>
+                    <input id="validationCustom01" name="codigo" type="text" placeholder="Codigo" class="form-control"
+                        [(ngModel)]="shelfsData.codigo" required autofocus>
                     <div class="valid-feedback">
                         Ingresado correcatmente!
                     </div>
 
-                    <b> <label for="validationCustom02">Nombre <a style="color: red;">*</a></label></b>
-                    <input id="validationCustom02" name="nombre" type="text" placeholder="Nombre" class="form-control"
-                        [(ngModel)]="usersData.nombre" required autofocus>
+                    <b> <label for="validationCustom02">Categoria <a style="color: red;">*</a></label></b>
+                    <input id="validationCustom02" name="categoria" type="text" placeholder="Categoria" class="form-control"
+                        [(ngModel)]="shelfsData.categoria" required autofocus>
                     <div class="valid-feedback">
                         Ingresado correcatmente!
                     </div>
 
-                    <b> <label for="validationCustom03">Apellido <a style="color: red;">*</a></label></b>
-                    <input id="validationCustom03" name="apellido" type="text" placeholder="Apellido"
-                        class="form-control" [(ngModel)]="usersData.apellido" required autofocus>
-                    <div class="valid-feedback">
-                        Ingresado correcatmente!
-                    </div>
-
-                    <b> <label for="inputEmail">Correo <a style="color: red;">*</a></label></b>
-                    <input type="email" id="inputEmail" name="correo" placeholder="Correo" class="form-control"
-                        [(ngModel)]="usersData.correo" required autofocus>
-                    <div class="invalid-feedback">
-                        Ingresa un correo valido con las caracteristicas de " @ " y " .com "
-                    </div>
-
-                    <b> <label for="validationCustom04">Tipo Usuario <a style="color: red;">*</a></label></b>
-                    <select class="form-control" id="validationCustom04" name="idTipoUsuario"
-                        [(ngModel)]="usersData.tipousuario" required autofocus>
-                        <option *ngFor="let tipoUsuario of typeUsers" value="{{tipoUsuario.idTipoUsuario}}">
-                            {{tipoUsuario.nombre}}</option>
-                    </select>
-                    <div class="valid-feedback">
-                        Seleccionado Correcatmente!
-                    </div>
-
-                    <b> <label for="validationCustom04">Usuario <a style="color: red;">*</a></label></b>
-                    <input type="text" id="validationCustom04" name="usuario" class="form-control" placeholder="Usuario"
-                        [(ngModel)]="usersData.usuario" required autofocus>
-                    <div class="valid-feedback">
-                        Ingresado correcatmente!
-                    </div>
-
-                    <b> <label for="validationCustom05">Contraseña <a style="color: red;">*</a></label></b>
-                    <input type="password" id="validationCustom05" name="password" class="form-control"
-                        placeholder="Contraseña" [(ngModel)]="usersData.password" required autofocus>
+                    <b> <label for="validationCustom03">Descripción <a style="color: red;">*</a></label></b>
+                    <input id="validationCustom03" name="descripcion" type="text" placeholder="Descripcion"
+                        class="form-control" [(ngModel)]="shelfsData.descripcion" required autofocus>
                     <div class="valid-feedback">
                         Ingresado correcatmente!
                     </div>
@@ -63,25 +32,25 @@
                     <div class="mx-auto" style="width: 230px;">
                         <tr>
                             <td class="pRigth">
-                                <button type="submit" class="btn btn-success btn-block" [disabled]="userForm.invalid"
-                                    (click)="createUser()"><b>Guardar</b></button>
+                                <button type="submit" class="btn btn-success btn-block" [disabled]="shelfForm.invalid"
+                                    (click)="createShelf()"><b>Guardar</b></button>
                                 <!-- btn-send -->
                             </td>
                             <td class="pRigth">
-                                <button type="submit" class="btn btn-warning btn-block" [disabled]="userForm.invalid"
-                                    (click)="createUser()"><b>Actualizar</b></button>
+                                <button type="submit" class="btn btn-warning btn-block" [disabled]="shelfForm.invalid"
+                                    (click)="createShelf()"><b>Actualizar</b></button>
                             </td>
                         </tr>
                         <tr>&nbsp;</tr>
                         <tr>
                             <td class="pRigth">
-                                <button type="submit" class="btn btn-danger btn-block" [disabled]="userForm.invalid"
-                                    (click)="deleteUser()"><b>Eliminar</b></button>
+                                <button type="submit" class="btn btn-danger btn-block" [disabled]="shelfForm.invalid"
+                                    (click)="deleteShelf()"><b>Eliminar</b></button>
                                 <!-- btn-send -->
                             </td>
                             <td class="pRigth">
                                 <button type="submit" class="btn btn-outline-dark btn-block"
-                                    [disabled]="userForm.invalid" (click)="cleanUser()"><b>Limpiar</b></button>
+                                    [disabled]="shelfForm.invalid" (click)="cleanShelf()"><b>Limpiar</b></button>
                             </td>
                         </tr>
                     </div>
@@ -90,37 +59,29 @@
         </div>
         <div class="col col-md-8">
             <div class="form-containerD">
-                <h2 class="text-center">Datos Usuarios</h2>
+                <h2 class="text-center">Datos Estanterias</h2>
                 <table>
                     <tr>
                         <td rowspan="10">
-                            <table class="table table-hover" id="tableUsuarios">
+                            <table class="table table-hover" id="tableEstante">
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>Cedula</th>
-                                        <th>Nombre</th>
-                                        <th>Apellido</th>
-                                        <th>Correo</th>
-                                        <th>Tipo Usuario</th>
-                                        <th>Usuario</th>
-                                        <th>Password</th>
+                                        <th>Codigo</th>
+                                        <th>Categoria</th>
+                                        <th>Descripcion</th>
                                     </tr>
                                 </thead>
                                 <!-- <tbody id="listaUsuarios">
                                 </tbody> -->
                                 <tbody>
-                                    <tr *ngFor="let usuario of users; index as i"
-                                        (click)="searchUser(usuario.idusuario)">
+                                    <tr *ngFor="let estante of shelfs; index as i"
+                                        (click)="searchShelf(estante.idestante)">
                                         <th>{{ i + 1 }}</th>
-                                        <th style="display: none">{{ usuario.idusuario }}</th>
-                                        <td>{{ usuario.cedula }}</td>
-                                        <td>{{ usuario.nombre }}</td>
-                                        <td>{{ usuario.apellido }}</td>
-                                        <td>{{ usuario.correo }}</td>
-                                        <td>{{ usuario.tipousuario }}</td>
-                                        <td>{{ usuario.usuario }}</td>
-                                        <td>{{ usuario.password }}</td>
+                                        <th style="display: none">{{ estante.idestante }}</th>
+                                        <td>{{ estante.codigo }}</td>
+                                        <td>{{ estante.categoria }}</td>
+                                        <td>{{ estante.descripcion }}</td>
                                     </tr>
                                 </tbody>
                             </table>

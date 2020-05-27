@@ -11,14 +11,15 @@ import { error } from "@angular/compiler/src/util";
   styleUrls: ["./supplier.component.css"],
 })
 export class SupplierComponent implements OnInit {
+
   proveedores: SupplierInterface[] = [];
   proveedorData = {} as SupplierInterface;
-  idproveedor = "";
+  idproveedor = null;
 
   constructor(
     public helperService: HelperService,
     public supplierService: SupplierService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.listSuppliers();
@@ -51,13 +52,14 @@ export class SupplierComponent implements OnInit {
   saveSupplier() {
     /*Funcion que se encarga de almacenar la informacion del rol*/
     let postDataObj = new FormData();
-    postDataObj.append("idproveedor", this.idproveedor + "");
-    postDataObj.append("nit", this.proveedorData.nit + "");
+    postDataObj.append("id", this.idproveedor);
+    postDataObj.append("nit", this.proveedorData.nit);
     postDataObj.append("nombre", this.proveedorData.nombre);
     postDataObj.append("ciudad", this.proveedorData.ciudad);
     postDataObj.append("direccion", this.proveedorData.direccion);
     postDataObj.append("telefono", this.proveedorData.telefono);
-    if (this.helperService.isValidValue(this.proveedorData.idproveedor)) {
+    
+    if (this.helperService.isValidValue(this.idproveedor)) {
       postDataObj.append("type", "update");
     } else {
       postDataObj.append("type", "save");
@@ -91,21 +93,29 @@ export class SupplierComponent implements OnInit {
   }
 
   findSupplier(idproveedor) {
+
     let postDataObj = new FormData();
 
-    postDataObj.append("idproveedor", idproveedor + "");
+    postDataObj.append("idproveedor", idproveedor);
     postDataObj.append("type", "search");
+
+    this.idproveedor = idproveedor;
 
     this.supplierService.findSuppliers(postDataObj).subscribe(
       (data) => {
         let respuesta: any;
         respuesta = data;
 
+        console.log("DATA BUSCAR");
+        console.log(data);
+        console.log(respuesta.data[0]);
+
         if (respuesta.msj === "Success") {
+          
           this.helperService.openModal(true, "Info", "Encontrado exitosamente");
           this.proveedorData = JSON.parse(respuesta.data)[0];
-          this.proveedorData.idproveedor = idproveedor;
-          this.idproveedor = idproveedor;
+          // this.proveedorData.idproveedor = idproveedor;
+          // this.idproveedor = idproveedor;
         } else {
           this.helperService.openModal(true, "Info", "No se encontro");
         }
@@ -123,7 +133,7 @@ export class SupplierComponent implements OnInit {
   deleteSupplier() {
     /*Funcion que se encarga de almacenar la informacion del rol*/
     let postDataObj = new FormData();
-    postDataObj.append("idproveedor", this.idproveedor + "");
+    postDataObj.append("idproveedor", this.idproveedor);
     postDataObj.append("type", "delete");
 
     this.supplierService.deleteSuplliers(postDataObj).subscribe(

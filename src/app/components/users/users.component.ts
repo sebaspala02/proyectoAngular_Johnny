@@ -169,7 +169,6 @@ export class UsersComponent implements OnInit {
 
   searchUser(idusuario) {
 
-
     let postDataObj = new FormData();
 
     postDataObj.append("idusuario", idusuario);

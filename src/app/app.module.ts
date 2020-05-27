@@ -24,6 +24,7 @@ import { SupplierComponent } from './components/supplier/supplier.component';
 /*IMPORT NECESARIO PARA LAS PETICIONES HTTP*/
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { LaboratoryComponent } from './components/laboratory/laboratory.component';
+import { ShelfComponent } from './components/shelf/shelf.component';
 
 // import { AuthService } from './services/auth.service';
 
@@ -45,7 +46,8 @@ import { LaboratoryComponent } from './components/laboratory/laboratory.componen
     Page404Component,
     ProfileClientComponent,
     SupplierComponent,
-    LaboratoryComponent
+    LaboratoryComponent,
+    ShelfComponent
   ],
   imports: [
     BrowserModule,

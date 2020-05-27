@@ -57,8 +57,7 @@
                         </td>
                         <td class="pRigth">
                             <button type="submit" class="btn btn-outline-dark btn-block"
-                                [disabled]="supplierForm.invalid"
-                                (click)="cleanSupplier()"><b>Limpiar</b></button>
+                                [disabled]="supplierForm.invalid" (click)="cleanSupplier()"><b>Limpiar</b></button>
                         </td>
                     </tr>
                     <!-- </div> -->
@@ -75,6 +74,7 @@
                                 <thead>
                                     <tr>
                                         <th>#</th>
+                                        <th>#ID</th>
                                         <th>NIT</th>
                                         <th>Nombre</th>
                                         <th>Ciudad</th>
@@ -83,11 +83,13 @@
                                     </tr>
                                 </thead>
                                 <!-- <tbody id="listaUsuarios">
+                                    style="display: none;"
                                 </tbody> -->
                                 <tbody>
                                     <tr *ngFor="let proveedor of proveedores; index as i"
                                         (click)="findSupplier(proveedor.id)">
                                         <th>{{ i + 1 }}</th>
+                                        <th >{{ proveedor.id }}</th>
                                         <td>{{ proveedor.nit }}</td>
                                         <td>{{ proveedor.nombre }}</td>
                                         <td>{{ proveedor.direccion }}</td>
@@ -131,19 +133,18 @@
     </div>
 </div>
 
-<div id="mdlSample" class="modal fade" role="dialog"
-    [ngStyle]="{ display: helperService.modalOpen ? 'block' : 'none', opacity: 1 }">
-    <div class="modal-dialog modal-lg">
+<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"
+    [ngStyle]="{ display: helperService.modalOpen ? 'block' : 'none', opacity: 2 }">
+    <div class="modal-dialog modal-sm">
         <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title" style="color: white;">{{ helperService.modalTitle }}</h4>
+            <div class="modal-header alert-success">
+                <h4 class="modal-title alert-success text-center" id="exampleModalLabel">{{ helperService.modalTitle }}
+                </h4>
             </div>
-            <div class="modal-body">{{ helperService.modalContent }}</div>
-
-            <div class="modal-footer">
-                <button type="button" id="btnOK" class="btn btn-success" (click)="helperService.openModal(false)">
-                    <i class="fa fa-check fa-fw"></i> Ok
-                </button>
+            <div class="modal-body alert-success text-center">{{ helperService.modalContent }}</div>
+            <div class="modal-footer alert-success">
+                <button type="button" id="btnOK" class="btn btn-success" (click)="helperService.openModal(false)"
+                    data-dismiss="modal">cerrar</button>
             </div>
         </div>
     </div>

@@ -16,6 +16,7 @@ import { Page404Component } from './components/page404/page404.component';
 import { ProfileClientComponent } from './components/profile-client/profile-client.component';
 import { SupplierComponent } from './components/supplier/supplier.component';
 import { LaboratoryComponent } from './components/laboratory/laboratory.component';
+import { ShelfComponent } from './components/shelf/shelf.component';
 
 
 const routes: Routes = [
@@ -72,16 +73,20 @@ const routes: Routes = [
     component: LaboratoryComponent
   },
   {
+    path: "shelf",
+    component: ShelfComponent
+  },
+  {
+    path: "suppliers",
+    component: SupplierComponent
+  },
+  {
     path: "*",
     component: Page404Component
   },
   {
     path: "footer",
     component: FooterComponent
-  },
-  {
-    path: "suppliers",
-    component: SupplierComponent
   },
   {
     path: "",
