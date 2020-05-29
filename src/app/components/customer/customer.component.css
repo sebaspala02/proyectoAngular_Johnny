@@ -1,0 +1,119 @@
+.izq {
+    padding-left: 1%;
+    padding-right: 1%;
+  }
+  .dere {
+    width: 50%;
+    padding-left: 450px;
+  }
+  .pRigth {
+    padding-right: 20px;
+  }
+  .form-container {
+    font: 95% Arial, Helvetica, sans-serif;
+    max-width: 500px;
+    padding: 16px;
+    margin: 10px auto;
+    background: #f7f7f7;
+    border-radius: 25px;
+    float: left;
+  }
+  
+  @media only screen and (max-width: 768px) {
+    .izq {
+      padding-left: 20px;
+    }
+    .dere {
+      /* width: 50%; */
+      padding-left: 710px;
+    }
+    .form-containerD {
+      font: 95% Arial, Helvetica, sans-serif;
+      max-width: 500px auto;
+      padding: 16px;
+      margin: 10px auto;
+      background: #f7f7f7;
+      border-radius: 25px;
+  
+      float: left;
+    }
+  }
+  
+  .form-containerD {
+    font: 95% Arial, Helvetica, sans-serif;
+    max-width: 500px auto;
+    padding: 16px;
+    margin: 10px auto;
+    background: #f7f7f7;
+    border-radius: 25px;
+    float: right;
+  }
+  
+  input[type="text"],
+  input[type="email"],
+  input[type="password"],
+  input[type="number"],
+  textarea {
+    -webkit-transition: all 0, 30s ease-in-out;
+    transition: all 0, 30s ease-in-out;
+    outline: none;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 100%;
+    background: #fff;
+    margin-bottom: 4%;
+    border: 1px solid #ccc;
+    padding: 3%;
+    color: #555;
+    font: 95% Arial, Helvetica, sans-serif;
+  }
+  
+  input[type="text"],
+  input[type="email"],
+  input[type="password"],
+  input[type="number"],
+  textarea:focus {
+    -webkit-box-shadow: 0 0 5px #ccc;
+    box-shadow: 0 0 5px #ccc;
+    padding: 3%;
+    border: 1px solid #ccc;
+  }
+  
+  .alert-danger {
+    color: #bd1223;
+    background: #f8d7da;
+    border-color: #f5c6cb;
+    margin-bottom: 5px;
+  }
+  
+  .container-error-message {
+    padding: 3px;
+  }
+  
+  .form-container:h1 {
+    background: #007bff;
+    padding: 20px 0;
+    font-size: 140%;
+    font-weight: 300;
+    text-align: center;
+    color: #fff;
+    margin: -16px -16px 16px -16px;
+  }
+  
+  /* .btn-send {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 3%;
+    background: #007bff;
+    border-bottom: 2px solid #007bff;
+    border-top-style: none;
+    border-right-style: none;
+    border-left-style: none;
+    color: #fff;
+    font-size: 15px;
+  }
+  .btn-send:hover:not([disabled]) {
+    background: #6ba4e0;
+  } */
+  

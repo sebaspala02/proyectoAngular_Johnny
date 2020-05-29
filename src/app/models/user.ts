@@ -7,4 +7,5 @@ export interface UserInterface {
     tipousuario: string;
     usuario: string;
     password: string;
+    puntos: string;
 }

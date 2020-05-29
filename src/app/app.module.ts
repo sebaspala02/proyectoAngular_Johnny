@@ -25,6 +25,7 @@ import { SupplierComponent } from './components/supplier/supplier.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { LaboratoryComponent } from './components/laboratory/laboratory.component';
 import { ShelfComponent } from './components/shelf/shelf.component';
+import { CustomerComponent } from './components/customer/customer.component';
 
 // import { AuthService } from './services/auth.service';
 
@@ -47,7 +48,8 @@ import { ShelfComponent } from './components/shelf/shelf.component';
     ProfileClientComponent,
     SupplierComponent,
     LaboratoryComponent,
-    ShelfComponent
+    ShelfComponent,
+    CustomerComponent
   ],
   imports: [
     BrowserModule,

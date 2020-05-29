@@ -24,6 +24,11 @@ export class UserService {
     return this.http.get<UserInterface>(url_api);
   }
 
+  readCustomers() {
+    const url_api = `http://localhost/taller1ElectivaII/controller/ctlUsuario.php?type=listCliente`;
+    return this.http.get<UserInterface>(url_api);
+  }
+
   createUsers(postData: any) {
     const url_api = `http://localhost/taller1ElectivaII/controller/ctlUsuario.php`;
     return this.http.post<any>(url_api, postData);

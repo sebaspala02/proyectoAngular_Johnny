@@ -1,0 +1,203 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col col-md-4">
+            <div class="form-container">
+                <h2>Gestionar Clientes</h2>
+                <!-- (ngSubmit)="onSaveForm()" -->
+                <form class="needs-validation" #userForm="ngForm">
+
+                    <input style="display: none" type="text" id="idusuario" name="idusuario" [(ngModel)]="idusuario">
+
+                    <b> <label for="validationCustom01">Cedula <a style="color: red;">*</a></label></b>
+                    <input id="validationCustom01" name="cedula" type="number" placeholder="Cedula" class="form-control"
+                        [(ngModel)]="usersData.cedula" required autofocus>
+                    <div class="valid-feedback">
+                        Ingresado correcatmente!
+                    </div>
+
+                    <b> <label for="validationCustom02">Nombre <a style="color: red;">*</a></label></b>
+                    <input id="validationCustom02" name="nombre" type="text" placeholder="Nombre" class="form-control"
+                        [(ngModel)]="usersData.nombre" required autofocus>
+                    <div class="valid-feedback">
+                        Ingresado correcatmente!
+                    </div>
+
+                    <b> <label for="validationCustom03">Apellido <a style="color: red;">*</a></label></b>
+                    <input id="validationCustom03" name="apellido" type="text" placeholder="Apellido"
+                        class="form-control" [(ngModel)]="usersData.apellido" required autofocus>
+                    <div class="valid-feedback">
+                        Ingresado correcatmente!
+                    </div>
+
+                    <b> <label for="inputEmail">Correo <a style="color: red;">*</a></label></b>
+                    <input type="email" id="inputEmail" name="correo" placeholder="Correo" class="form-control"
+                        [(ngModel)]="usersData.correo" required autofocus>
+                    <div class="invalid-feedback">
+                        Ingresa un correo valido con las caracteristicas de " @ " y " .com "
+                    </div>
+
+                    <!-- <b> <label for="validationCustom04">Tipo Usuario <a style="color: red;">*</a></label></b>
+                    <select class="form-control" id="validationCustom04" name="idTipoUsuario"
+                        [(ngModel)]="usersData.tipousuario" required autofocus>
+                        <option *ngFor="let tipoUsuario of typeUsers" value="{{tipoUsuario.idTipoUsuario}}">
+                            {{tipoUsuario.nombre}}</option>
+                    </select>
+                    <div class="valid-feedback">
+                        Seleccionado Correcatmente!
+                    </div> -->
+
+                    <b> <label for="validationCustom04">Usuario <a style="color: red;">*</a></label></b>
+                    <input type="text" id="validationCustom04" name="usuario" class="form-control" placeholder="Usuario"
+                        [(ngModel)]="usersData.usuario" required autofocus>
+                    <div class="valid-feedback">
+                        Ingresado correcatmente!
+                    </div>
+
+                    <b> <label for="validationCustom05">Contraseña <a style="color: red;">*</a></label></b>
+                    <input type="password" id="validationCustom05" name="password" class="form-control"
+                        placeholder="Contraseña" [(ngModel)]="usersData.password" required autofocus>
+                    <div class="valid-feedback">
+                        Ingresado correcatmente!
+                    </div>
+
+                    <div class="mx-auto" style="width: 230px;">
+                        <tr>
+                            <td class="pRigth">
+                                <button type="submit" class="btn btn-success btn-block" [disabled]="userForm.invalid"
+                                    (click)="createUser()"><b>Guardar</b></button>
+                                <!-- btn-send -->
+                            </td>
+                            <td class="pRigth">
+                                <button type="submit" class="btn btn-warning btn-block" [disabled]="userForm.invalid"
+                                    (click)="createUser()"><b>Actualizar</b></button>
+                            </td>
+                        </tr>
+                        <tr>&nbsp;</tr>
+                        <tr>
+                            <td class="pRigth">
+                                <button type="submit" class="btn btn-danger btn-block" [disabled]="userForm.invalid"
+                                    (click)="deleteUser()"><b>Eliminar</b></button>
+                                <!-- btn-send -->
+                            </td>
+                            <td class="pRigth">
+                                <button type="submit" class="btn btn-outline-dark btn-block"
+                                    [disabled]="userForm.invalid" (click)="cleanUser()"><b>Limpiar</b></button>
+                            </td>
+                        </tr>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="col col-md-8">
+            <div class="form-containerD">
+                <h2 class="text-center">Datos Clientes</h2>
+                <table>
+                    <tr>
+                        <td rowspan="10">
+                            <table class="table table-hover" id="tableUsuarios">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Cedula</th>
+                                        <th>Nombre</th>
+                                        <th>Apellido</th>
+                                        <th>Correo</th>
+                                        <th>Tipo Usuario</th>
+                                        <th>Usuario</th>
+                                        <th>Password</th>
+                                        <th>Puntos</th>
+                                    </tr>
+                                </thead>
+                                <!-- <tbody id="listaUsuarios">
+                                </tbody> -->
+                                <tbody>
+                                    <tr *ngFor="let usuario of users; index as i"
+                                        (click)="searchUser(usuario.idusuario)">
+                                        <th>{{ i + 1 }}</th>
+                                        <th style="display: none">{{ usuario.idusuario }}</th>
+                                        <td>{{ usuario.cedula }}</td>
+                                        <td>{{ usuario.nombre }}</td>
+                                        <td>{{ usuario.apellido }}</td>
+                                        <td>{{ usuario.correo }}</td>
+                                        <td>{{ usuario.tipousuario }}</td>
+                                        <td>{{ usuario.usuario }}</td>
+                                        <td>{{ usuario.password }}</td>
+                                        <td>{{ usuario.puntos }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <table>
+                                <tr>
+                                    <td>
+                                        <form name="formPDF" method="post" target="_blank"
+                                            action="./controller/ctlReporte.php">
+                                            <input type="text" id="txtReporteU" style="display: none" value="Usuario(0)"
+                                                name="tabla">
+                                            <input type="text" id="nomTabla" style="display: none" value="Usuarios"
+                                                name="nomTabla">
+                                            <input class="btn btn-outline-info" type="submit" value="Generar PDF"
+                                                id="btnPdfU">
+                                        </form>
+                                    </td>
+                                    <td>
+                                        <form name="formPDF" method="post" target="_blank"
+                                            action="./controller/ctlExportar.php">
+                                            <input type="text" id="txtReporteU" style="display: none" value="Usuario(0)"
+                                                name="tabla">
+                                            <input type="text" id="nomTabla" style="display: none" value="Usuarios"
+                                                name="nomTabla">
+                                            <input type="text" value="," name="coma" id="coma" style="display: none">
+                                            <input class="btn btn-outline-info" type="submit"
+                                                value="Exportar CSV con ( , )" id="btnCsvU">
+                                        </form>
+                                    </td>
+                                    <td>
+                                        <form name="formPDF" method="post" target="_blank"
+                                            action="./controller/ctlExportar.php">
+                                            <input type="text" id="txtReporteU" style="display: none" value="Usuario(0)"
+                                                name="tabla">
+                                            <input type="text" id="nomTabla" style="display: none" value="Usuarios"
+                                                name="nomTabla">
+                                            <input type="text" value=";" name="coma" id="coma" style="display: none">
+                                            <input class="btn btn-outline-info" type="submit"
+                                                value="Exportar CSV con ( ; )" id="btnCsvU">
+                                        </form>
+                                    </td>
+                                    <td>
+                                        <form name="formPDF" method="post" target="_blank"
+                                            action="./controller/ctlExportar.php">
+                                            <input type="text" id="txtReporteU" style="display: none" value="Usuario(0)"
+                                                name="tabla">
+                                            <input type="text" id="nomTabla" style="display: none" value="Usuarios"
+                                                name="nomTabla">
+                                            <input type="text" value=":" name="coma" id="coma" style="display: none">
+                                            <input class="btn btn-outline-info" type="submit"
+                                                value="Exportar CSV con ( : )" id="btnCsvU">
+                                        </form>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"
+    [ngStyle]="{ display: helperService.modalOpen ? 'block' : 'none', opacity: 2 }">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header alert-success">
+                <h4 class="modal-title alert-success text-center" id="exampleModalLabel">{{ helperService.modalTitle }}
+                </h4>
+            </div>
+            <div class="modal-body alert-success text-center">{{ helperService.modalContent }}</div>
+            <div class="modal-footer alert-success">
+                <button type="button" id="btnOK" class="btn btn-success" (click)="helperService.openModal(false)"
+                    data-dismiss="modal">cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>

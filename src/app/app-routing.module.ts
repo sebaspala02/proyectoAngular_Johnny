@@ -17,6 +17,7 @@ import { ProfileClientComponent } from './components/profile-client/profile-clie
 import { SupplierComponent } from './components/supplier/supplier.component';
 import { LaboratoryComponent } from './components/laboratory/laboratory.component';
 import { ShelfComponent } from './components/shelf/shelf.component';
+import { CustomerComponent } from './components/customer/customer.component';
 
 
 const routes: Routes = [
@@ -79,6 +80,10 @@ const routes: Routes = [
   {
     path: "suppliers",
     component: SupplierComponent
+  },
+  {
+    path: "customer",
+    component: CustomerComponent
   },
   {
     path: "*",
