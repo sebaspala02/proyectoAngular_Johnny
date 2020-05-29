@@ -5,6 +5,14 @@
   width: 50%;
   padding-left: 600px;
 }
+#tableRealizarV td{
+width: 50px;
+max-width: max-content;
+text-align-last: center;
+}
+#tableRealizarV {
+margin-bottom:50px;
+}
 .dereC {
   width: 50%;
   padding-left: 400px;
@@ -34,7 +42,7 @@
     padding-left: 780px;
   }
   .form-containerD {
-    font: 95% Arial, Helvetica, sans-serif;
+    font: 90% Arial, Helvetica, sans-serif;
     max-width: 500px auto;
     padding: 16px;
     margin: 10px auto;
@@ -46,13 +54,17 @@
 }
 
 .form-containerD {
-  font: 95% Arial, Helvetica, sans-serif;
+  font: 90% Arial, Helvetica, sans-serif;
   max-width: 500px auto;
   padding: 16px;
   margin: 10px auto;
   background: #f7f7f7;
   border-radius: 25px;
   float: left;
+}
+.cart{
+  margin-right: 5%;
+  margin-left: 10%;
 }
 
 input[type="text"],

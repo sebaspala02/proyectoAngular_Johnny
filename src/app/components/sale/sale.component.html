@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col col-md-7">
             <div class="form-containerD">
-                <h2 class="text-center">Lista de Medicamentos</h2>
+                <h2 class="text-center">Productos</h2>
                 <table>
                     <tr>
                         <td rowspan="10">
@@ -10,18 +10,28 @@
                                 <thead>
                                     <tr>
                                         <th style="display: none">id</th>
+                                        <th>#</th>
                                         <th>Nombre</th>
                                         <th>Descripción</th>
-                                        <th>Fecha de Vencimiento</th>
+                                        <th>Vencimiento</th>
                                         <th>Cantidad</th>
-                                        <th>Fecha de Creación</th>
                                         <th>Precio</th>
-                                        <th>Usuario</th>
                                         <th>Laboratorio</th>
+                                        <th>Proveedor</th>
                                     </tr>
                                 </thead>
                                 <tbody id="listaMedi">
-
+                                    <tr *ngFor="let prod of products; index as i" (click)="addToCart(prod)">
+                                        <th>{{ i + 1 }}</th>
+                                        <th style="display: none">{{ prod.idmedicamento }}</th>
+                                        <td>{{ prod.nombre }}</td>
+                                        <td>{{ prod.descripcion }}</td>
+                                        <td>{{ prod.vencimiento }}</td>
+                                        <td>{{ prod.cantidad }}</td>
+                                        <td>{{ prod.precio }}</td>
+                                        <td>{{ prod.laboratorio }}</td>
+                                        <td>{{ prod.proveedor }}</td>
+                                    </tr>
                                 </tbody>
                             </table>
                             <table>
@@ -29,48 +39,19 @@
                                     <td>
                                         <form name="formPDF" method="post" target="_blank"
                                             action="./controller/ctlReporte.php">
-                                            <input type="text" id="txtReporteM" style="display: none" value="Medi(0)"
-                                                name="tabla">
-                                            <input type="text" id="nomTabla" style="display: none" value="Medicamentos"
-                                                name="nomTabla">
-                                            <input class="btn btn-outline-info" type="submit" value="Generar PDF"
-                                                id="btnPdfM">
+                                            <input type="text" style="display: none" value="Medi(0)" name="tabla">
+                                            <input type="text" style="display: none" value="" name="">
+                                            <input class="btn btn-outline-info" type="submit" value="Generar PDF">
                                         </form>
                                     </td>
                                     <td>
                                         <form name="formPDF" method="post" target="_blank"
                                             action="./controller/ctlExportar.php">
-                                            <input type="text" id="txtReporteU" style="display: none" value="Medi(0)"
-                                                name="tabla">
-                                            <input type="text" id="nomTabla" style="display: none" value="Medicamentos"
-                                                name="nomTabla">
-                                            <input type="text" value="," name="coma" id="coma" style="display: none">
+                                            <input type="text" style="display: none" value="Medi(0)" name="tabla">
+                                            <input type="text" style="display: none" value="" name="">
+                                            <input type="text" value=";" name="" style="display: none">
                                             <input class="btn btn-outline-info" type="submit"
-                                                value="Exportar CSV con ( , )" id="btnCsvM">
-                                        </form>
-                                    </td>
-                                    <td>
-                                        <form name="formPDF" method="post" target="_blank"
-                                            action="./controller/ctlExportar.php">
-                                            <input type="text" id="txtReporteU" style="display: none" value="Medi(0)"
-                                                name="tabla">
-                                            <input type="text" id="nomTabla" style="display: none" value="Medicamentos"
-                                                name="nomTabla">
-                                            <input type="text" value=";" name="coma" id="coma" style="display: none">
-                                            <input class="btn btn-outline-info" type="submit"
-                                                value="Exportar CSV con ( ; )" id="btnCsvM">
-                                        </form>
-                                    </td>
-                                    <td>
-                                        <form name="formPDF" method="post" target="_blank"
-                                            action="./controller/ctlExportar.php">
-                                            <input type="text" id="txtReporteU" style="display: none" value="Medi(0)"
-                                                name="tabla">
-                                            <input type="text" id="nomTabla" style="display: none" value="Medicamentos"
-                                                name="nomTabla">
-                                            <input type="text" value=":" name="coma" id="coma" style="display: none">
-                                            <input class="btn btn-outline-info" type="submit"
-                                                value="Exportar CSV con ( : )" id="btnCsvM">
+                                                value="Exportar CSV con ( ; )">
                                         </form>
                                     </td>
                                 </tr>
@@ -81,40 +62,70 @@
             </div>
         </div>
         <!-- car shopping -->
-        <div class="col col-md-4">
-            <div class="form-containerD">
+        <div class="col col-md-5">
+            <div class="form-containerD cart">
                 <h2 class="text-center">Carrito de Compra</h2>
+                <form class="needs-validation" #clientForm="ngForm">
+                    <label for="txtIdClienteVenta"><b>Cliente: &nbsp;</b></label>
+                    <select class="form-control" id="txtIdClienteVenta" name="client"
+                        style="display: inline-block; width: 40%; height:27px;padding:0%"
+                        *ngFor="let customer of customers;index as i" [(ngModel)]="idCliente" required>
+                        <option value="{{customer.idusuario}}" style="height:30px; padding:0%">
+                            {{customer.nombre}}
+                        </option>
+                    </select>
+                </form>
                 <table class="table table-sm" id="tableRealizarV">
                     <thead>
                         <input type="text" id="txtIddetalleventa" style="display: none" value="">
-                        <label for=""><b>Cliente: &nbsp;</b></label>
-                        <select class="form-control" id="txtIdClienteVenta" name="laboratorio"
-                            style="display: inline-block; width: 40%;"></select>
                         <tr>
                             <th style="display: none">id</th>
                             <th>Medicamento</th>
-                            <th>Laboratorio</th>
                             <th>Cantidad</th>
                             <th>Inventario</th>
-                            <th>Precio/Unitario</th>
+                            <th>Precio Unit.</th>
                             <th>Accion</th>
                         </tr>
                     </thead>
                     <tbody id="bodyTableV">
+                        <tr *ngFor="let prod of cartProducts; index as i">
+                            <th style="display: none">{{ prod.idmedicamento }}</th>
+                            <td>{{ prod.nombre }}</td>
+                            <td><input [(ngModel)]="prod.cantidad" (click)="calculatePrice()" type="number" min="1"
+                                    max="{{prod.inventario}}" /></td>
+                            <td>{{ prod.inventario }}</td>
+                            <td>{{ prod.precio }}</td>
+                            <td><button class="btn btn-danger btn-sm" style="padding: 0px 4px;"
+                                    (click)="removeFromCart(prod)">Eliminar</button></td>
+                        </tr>
                     </tbody>
-                    <tr>
+                    <!-- <tr>
                         <td>
-                            <label for=""><b>Precio Total: &nbsp;&nbsp;</b></label>
-                            <input type="number" name="txtPrecioVenta" id="precioVenta" placeholder="Precio Total"
-                                readonly>
+                           
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <input class="btn btn-success" type="button" value="Comprar" id="btnCompra">
+                 
                         </td>
-                    </tr>
+                    </tr> -->
                 </table>
+                <label for="paymentM"><b>Metodo de Pago: &nbsp;&nbsp;</b></label>
+                <select style="width: 40%; padding:1%;" name="paymentM" id="" [(ngModel)]="payment">
+                    <option value="0" style=" padding:1%;" selected>
+                        Efectivo
+                    </option>
+                    <option value="1" style=" padding:1%;">
+                        Puntos
+                    </option>
+                </select>
+                <br>
+                <label for="txtPrecioVenta"><b>Precio Total: &nbsp;&nbsp;</b></label>
+                <input style="width: 40%;padding:1%;margin-left: 7%;" [(ngModel)]="price" type="number"
+                    name="txtPrecioVenta" id="precioVenta" placeholder="Precio Total" readonly>
+                <br>
+                <input class="btn btn-success" type="button" value="Comprar" id="btnCompra" (click)="saveSale()"
+                    [disabled]="clientForm.invalid">
             </div>
         </div>
     </div>
@@ -183,7 +194,7 @@
                     <table>
                         <tr>
                             <td rowspan="10">
-                                <table class="table table-hover" id="tableClientes">
+                                <table class="table table-hover" id="table">
                                     <thead>
                                         <tr>
                                             <th style="display: none">id</th>
@@ -203,10 +214,9 @@
                                         <td>
                                             <form name="formPDF" method="post" target="_blank"
                                                 action="./controller/ctlReporte.php">
-                                                <input type="text" id="txtReporteC" style="display: none"
-                                                    value="Cliente(0)" name="tabla">
-                                                <input type="text" id="nomTabla" style="display: none" value="Clientes"
-                                                    name="nomTabla">
+                                                <input type="text" style="display: none" value="Cliente(0)"
+                                                    name="tabla">
+                                                <input type="text" style="display: none" value="" name="">
                                                 <input style="width: 100%" class="btn btn-outline-info" type="submit"
                                                     value="Generar PDF" id="btnPdfC">
                                             </form>
@@ -214,12 +224,10 @@
                                         <td>
                                             <form name="formPDF" method="post" target="_blank"
                                                 action="./controller/ctlExportar.php">
-                                                <input type="text" id="txtReporteU" style="display: none"
-                                                    value="Cliente(0)" name="tabla">
-                                                <input type="text" id="nomTabla" style="display: none" value="Clientes"
-                                                    name="nomTabla">
-                                                <input type="text" value="," name="coma" id="coma"
-                                                    style="display: none">
+                                                <input type="text" style="display: none" value="Cliente(0)"
+                                                    name="tabla">
+                                                <input type="text" style="display: none" value="" name="">
+                                                <input type="text" value="," name="" style="display: none">
                                                 <input class="btn btn-outline-info" type="submit"
                                                     value="Exportar CSV con ( , )" id="btnCsvC">
                                             </form>
@@ -227,14 +235,12 @@
                                         <td>
                                             <form name="formPDF" method="post" target="_blank"
                                                 action="./controller/ctlExportar.php">
-                                                <input type="text" id="txtReporteU" style="display: none"
-                                                    value="Cliente(0)" name="tabla">
-                                                <input type="text" id="nomTabla" style="display: none" value="Clientes"
-                                                    name="nomTabla">
-                                                <input type="text" value=";" name="coma" id="coma"
-                                                    style="display: none">
+                                                <input type="text" style="display: none" value="Cliente(0)"
+                                                    name="tabla">
+                                                <input type="text" style="display: none" value="" name="">
+                                                <input type="text" value=";" name="" style="display: none">
                                                 <input class="btn btn-outline-info" type="submit"
-                                                    value="Exportar CSV con ( ; )" id="btnCsvM">
+                                                    value="Exportar CSV con ( ; )">
                                             </form>
                                         </td>
                                     </tr>
@@ -246,14 +252,12 @@
 
                                             <form name="formPDF" method="post" target="_blank"
                                                 action="./controller/ctlExportar.php">
-                                                <input type="text" id="txtReporteU" style="display: none"
-                                                    value="Cliente(0)" name="tabla">
-                                                <input type="text" id="nomTabla" style="display: none" value="Clientes"
-                                                    name="nomTabla">
-                                                <input type="text" value=":" name="coma" id="coma"
-                                                    style="display: none">
+                                                <input type="text" style="display: none" value="Cliente(0)"
+                                                    name="tabla">
+                                                <input type="text" style="display: none" value="" name="">
+                                                <input type="text" value=":" name="" style="display: none">
                                                 <input class="btn btn-outline-info" type="submit"
-                                                    value="Exportar CSV con ( : )" id="btnCsvM">
+                                                    value="Exportar CSV con ( : )">
                                             </form>
                                         </td>
                                     </tr>
@@ -280,4 +284,42 @@
         <button onclick="showClient()" class="btn btn-primary" id="show"><i class="fa fa-eye"></i> Agregar Cliente
             +</button>
     </p>
+</div>
+
+<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"
+    [ngStyle]="{ display: helperService.modalOpen ? 'block' : 'none', opacity: 2 }">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header alert-success">
+                <h4 class="modal-title alert-success text-center" id="exampleModalLabel">{{ helperService.modalTitle }}
+                </h4>
+            </div>
+            <div class="modal-body alert-success text-center">{{ helperService.modalContent }}</div>
+
+            <div class="modal-footer alert-success">
+                <button type="button" id="btnOK" class="btn btn-success" (click)="helperService.openModal(false)"
+                    data-dismiss="modal">cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true" [ngStyle]="{ display: passmodalOpen ? 'block' : 'none', opacity: 2 }">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Ingresar Codigo</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" style="text-align-last: center;">
+                <input style="width: 50%;" [(ngModel)]="password" type="number" name="" id="" placeholder="codigo">
+            </div>
+            <div class="modal-footer">
+                <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
+                <button type="button" (click)="pay()" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
 </div>
