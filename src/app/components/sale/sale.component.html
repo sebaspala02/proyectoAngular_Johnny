@@ -69,8 +69,8 @@
                     <label for="txtIdClienteVenta"><b>Cliente: &nbsp;</b></label>
                     <select class="form-control" id="txtIdClienteVenta" name="client"
                         style="display: inline-block; width: 40%; height:27px;padding:0%"
-                        *ngFor="let customer of customers;index as i" [(ngModel)]="idCliente" required>
-                        <option value="{{customer.idusuario}}" style="height:30px; padding:0%">
+                         [(ngModel)]="idCliente" required>
+                        <option *ngFor="let customer of customers;index as i" value="{{customer.idusuario}}" style="height:30px; padding:0%">
                             {{customer.nombre}}
                         </option>
                     </select>
@@ -318,7 +318,7 @@
             </div>
             <div class="modal-footer">
                 <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
-                <button type="button" (click)="pay()" class="btn btn-primary">Save changes</button>
+                <button type="button" (click)="pay2()" class="btn btn-primary">Save changes</button>
             </div>
         </div>
     </div>

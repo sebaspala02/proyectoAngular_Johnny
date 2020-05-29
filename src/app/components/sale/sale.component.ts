@@ -130,6 +130,67 @@ export class SaleComponent implements OnInit {
     }
   }
   pay() {
+    console.log(this.idCliente)
+    this.passmodalOpen = false;
+    if (
+      this.cartProducts.length > 0 &&
+      this.idCliente > 0
+    ) {
+      let ids = this.cartProducts.map((obj) => parseFloat(obj.idmedicamento));
+      let cants = this.cartProducts.map((obj) => parseFloat(obj.cantidad));
+      /*Funcion que se encarga de almacenar la informacion del rol*/
+      let postDataObj = new FormData();
+      postDataObj.append("iddetalle_venta", null);
+      postDataObj.append("total", this.price.toString());
+      postDataObj.append("fecha", new Date().toString());
+      postDataObj.append("medi", ids.toString() + ",");
+      postDataObj.append("cant", cants.toString() + ",");
+      postDataObj.append("cliente", this.idCliente.toString());
+      postDataObj.append("usuario", this.idusuario.toString());
+      postDataObj.append("idventa", null);
+      postDataObj.append("puntos", this.points.toString());
+      // if (this.helperService.isValidValue(this.idventa)) {
+      // postDataObj.append("type", "update");
+      // } else {
+      postDataObj.append("type", "save");
+      // }
+      this.saleService.createSale(postDataObj).subscribe(
+        (data) => {
+          let respuesta: any;
+          respuesta = data;
+          this.clean();
+          if (respuesta.res === "Success") {
+            this.helperService.openModal(
+              true,
+              "Success",
+              "Guardado exitosamente"
+            );
+            // this.readLab();
+            // this.cleanUser();
+            // location.reload();
+          } else {
+            this.helperService.openModal(
+              true,
+              "Alerta",
+              "No se detecto ningun cambio en la base de datos"
+            );
+          }
+        },
+        (error) => {
+          this.helperService.openModal(
+            true,
+            "Alerta",
+            "Error consumiendo el servicio"
+          );
+        }
+      );
+    } else {
+      this.helperService.openModal(true, "Alerta", "error");
+      this.clean();
+    }
+  }
+  pay2() {
+    console.log(this.idCliente)
     let client = this.customers.find((e) => e.idusuario == this.idCliente);
     this.passmodalOpen = false;
     if (
