@@ -130,13 +130,12 @@
         </div>
     </div>
 </div>
-<div class="container">
+<!-- <div class="container">
     <div id="element" style="display: none;">
         <div class="row">
             <div class="col-sm-6">
                 <div class="form-container">
                     <h2>Gestionar Cliente</h2>
-                    <!-- (ngSubmit)="onSaveForm()" -->
                     <form class="form" #clientForm="ngForm">
                         <input type="text" id="idClient" style="display: none" value="">
 
@@ -165,7 +164,6 @@
                                 <td class="pRigth">
                                     <button type="submit" class="btn btn-success btn-block"
                                         [disabled]="clientForm.invalid"><b>Guardar</b></button>
-                                    <!-- btn-send -->
                                 </td>
                                 <td class="pRigth">
                                     <button type="submit" class="btn btn-warning btn-block"
@@ -177,7 +175,6 @@
                                 <td class="pRigth">
                                     <button type="submit" class="btn btn-danger btn-block"
                                         [disabled]="clientForm.invalid"><b>Eliminar</b></button>
-                                    <!-- btn-send -->
                                 </td>
                                 <td class="pRigth">
                                     <button type="submit" class="btn btn-outline-dark btn-block"
@@ -284,7 +281,7 @@
         <button onclick="showClient()" class="btn btn-primary" id="show"><i class="fa fa-eye"></i> Agregar Cliente
             +</button>
     </p>
-</div>
+</div> -->
 
 <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"
     [ngStyle]="{ display: helperService.modalOpen ? 'block' : 'none', opacity: 2 }">
