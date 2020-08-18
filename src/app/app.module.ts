@@ -7,7 +7,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
 import { UsersComponent } from './components/users/users.component';
 import { DrugComponent } from './components/drug/drug.component';
@@ -34,7 +33,6 @@ import { CustomerComponent } from './components/customer/customer.component';
     AppComponent,
     NavbarComponent,
     FooterComponent,
-    LoginComponent,
     HomeComponent,
     UsersComponent,
     DrugComponent,
