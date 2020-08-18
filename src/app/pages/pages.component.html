@@ -1,0 +1,30 @@
+<app-navbar *ngIf="this.helperService.existLocalData('user');"></app-navbar>
+<router-outlet></router-outlet>
+<app-footer></app-footer>
+
+<div
+id="mdlSample"
+class="modal fade"
+role="dialog"
+[ngStyle]="{ display: helperService.modalOpen ? 'block' : 'none', opacity: 1 }"
+>
+<div class="modal-dialog modal-lg">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h4 class="modal-title" style="color: white;">{{ helperService.modalTitle }}</h4>
+    </div>
+    <div class="modal-body">{{ helperService.modalContent }}</div>
+
+    <div class="modal-footer">
+      <button
+        type="button"
+        id="btnOK"
+        class="btn btn-success"
+        (click)="helperService.openModal(false)"
+      >
+        <i class="fa fa-check fa-fw"></i> Ok
+      </button>
+    </div>
+  </div>
+</div>
+</div>

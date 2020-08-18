@@ -42,7 +42,7 @@ export class LoginComponent implements OnInit {
         if (respuesta.msj === "Success") {
           this.helperService.saveLocalData("user", true);
           this.helperService.saveLocalData("nombreusuario", (respuesta.data)[0].nombre);
-          this.router.navigateByUrl("/home");
+          this.router.navigateByUrl("drugsonline/home");
         } else {
           this.helperService.openModal(true, "Info", "EL usuario no existe");
         }
