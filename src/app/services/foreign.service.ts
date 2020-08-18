@@ -19,4 +19,24 @@ export class ForeignService {
     return this.http.get<TypeUserInterface>("http://localhost/taller1ElectivaII/controller/ctlList.php?type=loadListTipoUsuarios"
     );
   }
+
+  foreignUsers() {
+    return this.http.get<TypeUserInterface>("http://localhost/taller1ElectivaII/controller/ctlList.php?type=loadListUsuarios"
+    );
+  }
+
+  foreignLabs() {
+    return this.http.get<TypeUserInterface>("http://localhost/taller1ElectivaII/controller/ctlList.php?type=loadListLabs"
+    );
+  }
+
+  foreignSuppliers() {
+    return this.http.get<TypeUserInterface>("http://localhost/taller1ElectivaII/controller/ctlList.php?type=loadListSuppliers"
+    );
+  }
+
+  foreignShelfs() {
+    return this.http.get<TypeUserInterface>("http://localhost/taller1ElectivaII/controller/ctlList.php?type=loadListShelf"
+    );
+  }
 }

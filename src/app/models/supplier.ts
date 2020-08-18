@@ -1,5 +1,5 @@
 export interface SupplierInterface {
-    idproveedor: string;
+    id: string;
     nit: string;
     nombre: string;
     ciudad: string;

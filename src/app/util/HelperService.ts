@@ -31,5 +31,38 @@ export class HelperService {
     this.modalOpen = open;
   }
 
+  /******************LOCAL STORAGE***********************************/
 
+  public saveLocalData(name: string, value: any) {
+    localStorage.setItem(name, value);
+  }
+
+  public getLocalData(name: string) {
+    return localStorage.getItem(name);
+  }
+
+  public deleteLocalData(name: string) {
+    localStorage.removeItem(name);
+  }
+
+  public existLocalData(name: string) {
+    if (this.isValidValue(this.getLocalData(name))) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  /******************END LOCAL STORAGE***********************************/
+
+
+  public mappingObjectToForm(obj: any) {
+    
+    let postDataObj = new FormData();
+
+    for (var key in obj) {
+      postDataObj.append(key, obj[key]);
+    }
+    return postDataObj;
+  }
 }

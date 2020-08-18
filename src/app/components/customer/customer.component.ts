@@ -198,9 +198,6 @@ export class CustomerComponent implements OnInit {
     );
   }
 
-
-
-
   deleteUser() {
 
     // console.log("delete idusuario");

@@ -5,7 +5,7 @@ extra_css: "floating-labels.css"
 include_js: false
 --- -->
 
-<form class="form-signin">
+<form class="form-signin" #formulario="ngForm">
     <!-- <div class="text-center mb-4">
         <img class="mb-4" src="/assets/brand/bootstrap-solid.svg" alt=""
             width="72" height="72">
@@ -21,21 +21,25 @@ include_js: false
     </div>
 
     <div class="form-label-group">
-        <input type="text" class="form-control" id="inputUser" placeholder="Usuario" required autofocus>
+        <input type="text" class="form-control" id="usuario" name="usuario" placeholder="Usuario" [(ngModel)]="logInData.usuario"
+            required autofocus>
         <label for="inputUser">Usuario</label>
     </div>
 
     <div class="form-label-group">
-        <input type="password" id="inputPassword" class="form-control" placeholder="Contraseña" required>
+        <input type="password" id="password" name="password" class="form-control" placeholder="Contraseña"
+            [(ngModel)]="logInData.password" required autofocus>
         <label for="inputPassword">Contraseña</label>
     </div>
 
-    <!-- <div class="checkbox mb-3">
+    <div class="checkbox mb-3">
         <label>
             <input type="checkbox" value="remember-me"> Remember me
         </label>
-    </div> -->
-    <a class="btn btn-lg btn-primary btn-block" [routerLink]="['/home']"><b>Iniciar Sesión</b></a>
+    </div>
+
+    <button class="btn btn-lg btn-primary btn-block" [disabled]="formulario.invalid" (click)="logIn()"><b>Iniciar
+            Sesión</b></button>
     <!-- <button class="btn btn-lg btn-primary btn-block" type="submit">Iniciar Sesión</button> -->
     <!-- <p class="mt-5 mb-3 text-muted text-center">&copy; 2020</p> -->
 </form>

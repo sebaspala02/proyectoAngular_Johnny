@@ -1,73 +1,64 @@
 <div class="container-fluid">
     <div class="row">
-        <div class="col col-md-4">
+        <div class="col col-md-3 little_font">
             <div class="form-container">
                 <h2>Gestionar Medicamentos</h2>
-                <!-- (ngSubmit)="onSaveForm()" -->
                 <form class="form" #drugForm="ngForm">
-                    <input type="text" id="idDrug" style="display: none" value="">
-                    <!-- [(ngModel)]="users.cedula"
-                     #cedula="ngModel" -->
-                    <!-- <div class="alert-danger" *ngIf="name.invalid && (name.dirty || name.touched)">
-                    <div class="container-error-message" *ngIf="name.errors.required">
-                            Name is required
-                        </div>
-                        <div class="container-error-message" *ngIf="name.errors.minlength">
-                            Name must be at least 5 characters long.
-                        </div>
-                    </div> -->
+
+                    <input style="display: none" type="text" id="idmedicamento" name="idmedicamento"
+                        [(ngModel)]="idmedicamento">
 
                     <b> <label for="nombre">Nombre <a style="color: red;">*</a></label></b>
-                    <input id="nombre" name="name" type="text" placeholder="Nombre" class="form-control" required
-                        autofocus>
-                    <!-- [(ngModel)]="users.name" 
-                        #name="ngModel"
-                        -->
-                    <!-- <div class="alert-danger" *ngIf="email.invalid && (email.dirty || email.touched)">
-                        <div class="container-error-message" *ngIf="email.errors.required">
-                            Email is required
-                        </div>
-                        <div class="container-error-message" *ngIf="email.errors.minlength">
-                            Email must be at least 5 characters long.
-                        </div>
-                        <div class="container-error-message"
-                            *ngIf="(email.dirty || email.touched) && email.invalid && email.errors.pattern">
-                            Value has to be a valid email address.
-                        </div>
-                        </div> -->
+                    <input id="nombre" name="nombre" type="text" placeholder="Nombre" class="form-control"
+                        [(ngModel)]="drugsData.nombre" required autofocus>
+
                     <b> <label for="description">Descripción <a style="color: red;">*</a></label></b>
-                    <textarea id="description" name="description" type="text" placeholder="Descripción"
-                        class="form-control" required autofocus></textarea>
-                    <!-- [(ngModel)]="users.lastname" 
-                        #lastname="ngModel"
-                        -->
-                    <!-- <div class="alert-danger" *ngIf="message.invalid && (message.dirty || message.touched)">
-                        <div class="container-error-message" *ngIf="message.errors.required">
-                            Message is required
-                        </div>
-                        <div class="container-error-message" *ngIf="message.errors.minlength">
-                            Message must be at least 10 characters long.
-                        </div>
-                        </div> -->
+                    <textarea id="description" name="descrip" type="text" placeholder="Descripción" class="form-control"
+                        [(ngModel)]="drugsData.descrip" required autofocus></textarea>
+
                     <b> <label for="inputExpiry">Fecha de Vencimiento <a style="color: red;">*</a></label></b>
-                    <input type="date" id="inputExpiry" name="inputExpiry" placeholder="Fecha de Vencimiento"
-                        class="form-control" required autofocus>
+                    <input type="date" id="inputExpiry" name="fecha_venc" placeholder="Fecha de Vencimiento"
+                        class="form-control" [(ngModel)]="drugsData.fecha_venc" required autofocus>
 
                     <b> <label for="inputCant">Cantidad <a style="color: red;">*</a></label></b>
-                    <input type="number" id="inputCant" class="form-control" placeholder="Cantidad" required autofocus>
+                    <input type="number" id="inputCant" class="form-control" name="cant" placeholder="Cantidad"
+                        [(ngModel)]="drugsData.cant" required autofocus>
 
                     <b> <label for="inputCreation">Fecha de Creación <a style="color: red;">*</a></label></b>
-                    <input type="date" id="inputCreation" class="form-control" placeholder="Fecha de Creación" required
-                        autofocus>
+                    <input type="date" id="inputCreation" class="form-control" name="fecha_creado"
+                        placeholder="Fecha de Creación" [(ngModel)]="drugsData.fecha_creado" required autofocus>
 
                     <b> <label for="inputPrice">Precio <a style="color: red;">*</a></label></b>
-                    <input type="number" id="inputPrice" class="form-control" placeholder="Precio" required autofocus>
+                    <input type="number" id="inputPrice" class="form-control" name="precio" placeholder="Precio"
+                        [(ngModel)]="drugsData.precio" required autofocus>
 
                     <b> <label for="inputUser">Usuario <a style="color: red;">*</a></label></b>
-                    <select class="form-control" id="idUsers" name="inputUser" required autofocus></select>
+                    <select class="form-control" id="idUsers" name="usuario_idusuario"
+                        [(ngModel)]="drugsData.usuario_idusuario" required autofocus>
+                        <option *ngFor="let usuario of users" value="{{usuario.idusuario}}">
+                            {{usuario.nombre}}</option>
+                    </select>
 
                     <b> <label for="inputLab">Laboratorio <a style="color: red;">*</a></label></b>
-                    <select class="form-control" id="idLab" name="inputLab" required autofocus></select>
+                    <select class="form-control" id="idLab" name="laboratorio_idlaboratorio"
+                        [(ngModel)]="drugsData.laboratorio_idlaboratorio" required autofocus>
+                        <option *ngFor="let laboratorio of labs" value="{{laboratorio.idlaboratorio}}">
+                            {{laboratorio.nombre}}</option>
+                    </select>
+
+                    <b> <label for="inputProv">Proveedor <a style="color: red;">*</a></label></b>
+                    <select class="form-control" id="idProv" name="proveedor_id" [(ngModel)]="drugsData.proveedor_id"
+                        required autofocus>
+                        <option *ngFor="let proveedor of suppliers" value="{{proveedor.id}}">
+                            {{proveedor.nombre}}</option>
+                    </select>
+
+                    <b> <label for="inputShelf">Categoria <a style="color: red;">*</a></label></b>
+                    <select class="form-control" id="idShelf" name="estante_idestante"
+                        [(ngModel)]="drugsData.estante_idestante" required autofocus>
+                        <option *ngFor="let estante of shelfs" value="{{estante.idestante}}">
+                            {{estante.categoria}}</option>
+                    </select>
 
                     <!-- <label style="display: none;">espacio en blanco</label> -->
                     <div class="mx-auto" style="width: 230px;">
@@ -75,24 +66,23 @@
                         <tr>
                             <td class="pRigth">
                                 <button type="submit" class="btn btn-success btn-block"
-                                    [disabled]="drugForm.invalid"><b>Guardar</b></button>
-                                <!-- btn-send -->
+                                     (click)="createDrug()"><b>Guardar</b></button>
+                                     <!-- [disabled]="drugForm.invalid" -->
                             </td>
                             <td class="pRigth">
                                 <button type="submit" class="btn btn-warning btn-block"
-                                    [disabled]="drugForm.invalid"><b>Actualizar</b></button>
+                                    (click)="createDrug()"><b>Actualizar</b></button>
                             </td>
                         </tr>
                         <tr>&nbsp;</tr>
                         <tr>
                             <td class="pRigth">
                                 <button type="submit" class="btn btn-danger btn-block"
-                                    [disabled]="drugForm.invalid"><b>Eliminar</b></button>
-                                <!-- btn-send -->
+                                     (click)="deleteDrug()"><b>Eliminar</b></button>
                             </td>
                             <td class="pRigth">
                                 <button type="submit" class="btn btn-outline-dark btn-block"
-                                    [disabled]="drugForm.invalid"><b>Limpiar</b></button>
+                                     (click)="cleanDrug()"><b>Limpiar</b></button>
                             </td>
                         </tr>
                     </div>
@@ -100,89 +90,106 @@
             </div>
         </div>
         <!-- <div class="dere"> -->
-            <div class="col col-md-8">
-                <div class="form-containerD">
-                    <h2 class="text-center">Datos Medicamentos</h2>
-                    <table>
-                        <tr>
-                            <td rowspan="10">
-                                <table class="table table-hover" id="tableMedis">
-                                    <thead>
-                                        <tr>
-                                            <th style="display: none">id</th>
-                                            <th>Nombre</th>
-                                            <th>Descripción</th>
-                                            <th>Fecha de Vencimiento</th>
-                                            <th>Cantidad</th>
-                                            <th>Fecha de Creación</th>
-                                            <th>Precio</th>
-                                            <th>Usuario</th>
-                                            <th>Laboratorio</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="listaMedi">
-
-                                    </tbody>
-                                </table>
-                                <table>
+        <div class="col col-md-9">
+            <div class="form-containerD font-weight-light">
+                <h2 class="text-center">Datos Medicamentos</h2>
+                <table>
+                    <tr>
+                        <td rowspan="10">
+                            <table class="table table-hover" id="tableMedis">
+                                <thead>
                                     <tr>
-                                        <td>
-                                            <form name="formPDF" method="post" target="_blank"
-                                                action="./controller/ctlReporte.php">
-                                                <input type="text" id="txtReporteM" style="display: none"
-                                                    value="Medi(0)" name="tabla">
-                                                <input type="text" id="nomTabla" style="display: none"
-                                                    value="Medicamentos" name="nomTabla">
-                                                <input class="btn btn-outline-info" type="submit" value="Generar PDF"
-                                                    id="btnPdfM">
-                                            </form>
-                                        </td>
-                                        <td>
-                                            <form name="formPDF" method="post" target="_blank"
-                                                action="./controller/ctlExportar.php">
-                                                <input type="text" id="txtReporteU" style="display: none"
-                                                    value="Medi(0)" name="tabla">
-                                                <input type="text" id="nomTabla" style="display: none"
-                                                    value="Medicamentos" name="nomTabla">
-                                                <input type="text" value="," name="coma" id="coma"
-                                                    style="display: none">
-                                                <input class="btn btn-outline-info" type="submit"
-                                                    value="Exportar CSV con ( , )" id="btnCsvM">
-                                            </form>
-                                        </td>
-                                        <td>
-                                            <form name="formPDF" method="post" target="_blank"
-                                                action="./controller/ctlExportar.php">
-                                                <input type="text" id="txtReporteU" style="display: none"
-                                                    value="Medi(0)" name="tabla">
-                                                <input type="text" id="nomTabla" style="display: none"
-                                                    value="Medicamentos" name="nomTabla">
-                                                <input type="text" value=";" name="coma" id="coma"
-                                                    style="display: none">
-                                                <input class="btn btn-outline-info" type="submit"
-                                                    value="Exportar CSV con ( ; )" id="btnCsvM">
-                                            </form>
-                                        </td>
-                                        <td>
-                                            <form name="formPDF" method="post" target="_blank"
-                                                action="./controller/ctlExportar.php">
-                                                <input type="text" id="txtReporteU" style="display: none"
-                                                    value="Medi(0)" name="tabla">
-                                                <input type="text" id="nomTabla" style="display: none"
-                                                    value="Medicamentos" name="nomTabla">
-                                                <input type="text" value=":" name="coma" id="coma"
-                                                    style="display: none">
-                                                <input class="btn btn-outline-info" type="submit"
-                                                    value="Exportar CSV con ( : )" id="btnCsvM">
-                                            </form>
-                                        </td>
+                                        <th>#</th>
+                                        <th style="display: none">id</th>
+                                        <th>Nombre</th>
+                                        <th>Descripción</th>
+                                        <th>Fecha de Vencimiento</th>
+                                        <th>Cantidad</th>
+                                        <th>Fecha de Creación</th>
+                                        <th>Precio</th>
+                                        <th>Usuario</th>
+                                        <th>Laboratorio</th>
+                                        <th>Proveedor</th>
+                                        <th>Categoria</th>
                                     </tr>
-                                </table>
-                            </td>
-                        </tr>
-                    </table>
-                </div>
+                                </thead>
+                                <!-- <tbody id="listaMedi">
+
+                                    </tbody> -->
+                                <tbody>
+                                    <tr *ngFor="let medicamento of drugs; index as i"
+                                        (click)="searchDrug(medicamento.idmedicamento)">
+                                        <th>{{ i + 1 }}</th>
+                                        <th style="display: none">{{ medicamento.idmedicamento }}</th>
+                                        <td>{{ medicamento.nombre }}</td>
+                                        <td>{{ medicamento.descripcion }}</td>
+                                        <td>{{ medicamento.vencimiento }}</td>
+                                        <td>{{ medicamento.cantidad }}</td>
+                                        <td>{{ medicamento.registro }}</td>
+                                        <td>{{ medicamento.precio }}</td>
+                                        <td>{{ medicamento.usuario }}</td>
+                                        <td>{{ medicamento.laboratorio }}</td>
+                                        <td>{{ medicamento.proveedor }}</td>
+                                        <td>{{ medicamento.estanteria }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <table>
+                                <tr>
+                                    <td>
+                                        <form name="formPDF" method="post" target="_blank"
+                                            action="./controller/ctlReporte.php">
+                                            <input type="text" id="txtReporteM" style="display: none" value="Medi(0)"
+                                                name="tabla">
+                                            <input type="text" id="nomTabla" style="display: none" value="Medicamentos"
+                                                name="nomTabla">
+                                            <input class="btn btn-outline-info" type="submit" value="Generar PDF"
+                                                id="btnPdfM">
+                                        </form>
+                                    </td>
+                                    <td>
+                                        <form name="formPDF" method="post" target="_blank"
+                                            action="./controller/ctlExportar.php">
+                                            <input type="text" id="txtReporteU" style="display: none" value="Medi(0)"
+                                                name="tabla">
+                                            <input type="text" id="nomTabla" style="display: none" value="Medicamentos"
+                                                name="nomTabla">
+                                            <input type="text" value="," name="coma" id="coma" style="display: none">
+                                            <input class="btn btn-outline-info" type="submit"
+                                                value="Exportar CSV con ( , )" id="btnCsvM">
+                                        </form>
+                                    </td>
+                                    <td>
+                                        <form name="formPDF" method="post" target="_blank"
+                                            action="./controller/ctlExportar.php">
+                                            <input type="text" id="txtReporteU" style="display: none" value="Medi(0)"
+                                                name="tabla">
+                                            <input type="text" id="nomTabla" style="display: none" value="Medicamentos"
+                                                name="nomTabla">
+                                            <input type="text" value=";" name="coma" id="coma" style="display: none">
+                                            <input class="btn btn-outline-info" type="submit"
+                                                value="Exportar CSV con ( ; )" id="btnCsvM">
+                                        </form>
+                                    </td>
+                                    <td>
+                                        <form name="formPDF" method="post" target="_blank"
+                                            action="./controller/ctlExportar.php">
+                                            <input type="text" id="txtReporteU" style="display: none" value="Medi(0)"
+                                                name="tabla">
+                                            <input type="text" id="nomTabla" style="display: none" value="Medicamentos"
+                                                name="nomTabla">
+                                            <input type="text" value=":" name="coma" id="coma" style="display: none">
+                                            <input class="btn btn-outline-info" type="submit"
+                                                value="Exportar CSV con ( : )" id="btnCsvM">
+                                        </form>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
             </div>
+        </div>
         <!-- </div> -->
     </div>
 </div>

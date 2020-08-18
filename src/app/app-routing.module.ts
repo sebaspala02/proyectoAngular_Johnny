@@ -18,16 +18,17 @@ import { SupplierComponent } from './components/supplier/supplier.component';
 import { LaboratoryComponent } from './components/laboratory/laboratory.component';
 import { ShelfComponent } from './components/shelf/shelf.component';
 import { CustomerComponent } from './components/customer/customer.component';
+import { BlockAccessGuard } from './guards/block-access.guard';
 
 
 const routes: Routes = [
   {
     path: "home",
-    component: HomeComponent
+    component: HomeComponent, canActivate: [BlockAccessGuard]
   },
   {
     path: "navbar",
-    component: NavbarComponent
+    component: NavbarComponent, canActivate: [BlockAccessGuard]
   },
   {
     path: "login",
@@ -35,55 +36,55 @@ const routes: Routes = [
   },
   {
     path: "users",
-    component: UsersComponent
+    component: UsersComponent, canActivate: [BlockAccessGuard]
   },
   {
     path: "drug",
-    component: DrugComponent
+    component: DrugComponent, canActivate: [BlockAccessGuard]
   },
   {
     path: "sale",
-    component: SaleComponent
+    component: SaleComponent, canActivate: [BlockAccessGuard]
   },
   {
     path: "saleList",
-    component: SaleListComponent
+    component: SaleListComponent, canActivate: [BlockAccessGuard]
   },
   {
     path: "reportsCSV",
-    component: ReportsCSVComponent
+    component: ReportsCSVComponent, canActivate: [BlockAccessGuard]
   },
   {
     path: "reportsC3",
-    component: ReportsC3Component
+    component: ReportsC3Component, canActivate: [BlockAccessGuard]
   },
   {
     path: "C3",
-    component: C3Component
+    component: C3Component, canActivate: [BlockAccessGuard]
   },
   {
     path: "profile",
-    component: ProfileComponent
+    component: ProfileComponent, canActivate: [BlockAccessGuard]
   },
   {
     path: "profileClient",
-    component: ProfileClientComponent
+    component: ProfileClientComponent, canActivate: [BlockAccessGuard]
   },
   {
     path: "laboratory",
-    component: LaboratoryComponent
+    component: LaboratoryComponent, canActivate: [BlockAccessGuard]
   },
   {
     path: "shelf",
-    component: ShelfComponent
+    component: ShelfComponent, canActivate: [BlockAccessGuard]
   },
   {
     path: "suppliers",
-    component: SupplierComponent
+    component: SupplierComponent, canActivate: [BlockAccessGuard]
   },
   {
     path: "customer",
-    component: CustomerComponent
+    component: CustomerComponent, canActivate: [BlockAccessGuard]
   },
   {
     path: "*",
@@ -100,7 +101,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { useHash: true })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
