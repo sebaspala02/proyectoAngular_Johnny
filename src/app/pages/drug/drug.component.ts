@@ -1,5 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-
+import {
+  AfterViewInit,
+  Component,
+  OnDestroy,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
+import { DataTableDirective } from 'angular-datatables';
+import { Subject } from 'rxjs';
 import { HelperService } from 'src/app/util/HelperService';
 import { DrugInterface } from '../../models/drug';
 import { DrugService } from '../../services/drug.service';
@@ -15,6 +22,12 @@ import { ShelfInterface } from '../../models/shelf';
   styleUrls: ['./drug.component.css']
 })
 export class DrugComponent implements OnInit {
+  @ViewChild(DataTableDirective, { static: false })
+  dtElement: DataTableDirective;
+
+  dtOptions: DataTables.Settings = {};
+
+  dtTrigger: Subject<any> = new Subject();
 
   drugs: DrugInterface[] = [];
   drugsData = {} as DrugInterface;
@@ -270,7 +283,9 @@ export class DrugComponent implements OnInit {
   }
 
   readDrug() {
-
+    this.dtOptions = {
+      pagingType: 'full_numbers',
+    };
     /*Se llama al metodo de listar roles definido en el servicio*/
     this.drugService.readDrugs().subscribe(
       (data) => {
@@ -283,6 +298,12 @@ export class DrugComponent implements OnInit {
         if (respuesta.msj === "Success") {
           /*Se convierte en un objeto JSON el listado de datos obtenido*/
           this.drugs = JSON.parse(respuesta.data);
+          this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
+            // Destroy the table first
+            dtInstance.destroy();
+            // Call the dtTrigger to rerender again
+            this.dtTrigger.next();
+          });
         } else {
           this.drugs = [];
         }
@@ -339,6 +360,15 @@ export class DrugComponent implements OnInit {
         );
       }
     );
+  }
+
+  ngAfterViewInit(): void {
+    this.dtTrigger.next();
+  }
+
+  ngOnDestroy(): void {
+    // Do not forget to unsubscribe the event
+    this.dtTrigger.unsubscribe();
   }
 
   cleanDrug() {

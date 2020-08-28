@@ -1,5 +1,12 @@
-import { Component, OnInit } from "@angular/core";
-
+import {
+  AfterViewInit,
+  Component,
+  OnDestroy,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
+import { DataTableDirective } from 'angular-datatables';
+import { Subject } from 'rxjs';
 import { NgForm } from "@angular/forms";
 import { HelperService } from "src/app/util/HelperService";
 import { SupplierInterface } from "src/app/models/supplier";
@@ -11,7 +18,13 @@ import { error } from "@angular/compiler/src/util";
   styleUrls: ["./supplier.component.css"],
 })
 export class SupplierComponent implements OnInit {
+  @ViewChild(DataTableDirective, { static: false })
+  dtElement: DataTableDirective;
 
+  dtOptions: DataTables.Settings = {};
+
+  dtTrigger: Subject<any> = new Subject();
+  
   proveedores: SupplierInterface[] = [];
   proveedorData = {} as SupplierInterface;
   idproveedor = null;
@@ -25,6 +38,9 @@ export class SupplierComponent implements OnInit {
     this.listSuppliers();
   }
   listSuppliers() {
+    this.dtOptions = {
+      pagingType: 'full_numbers',
+    };
     /*Se llama al metodo de listar roles definido en el servicio*/
     this.supplierService.listSuppliers().subscribe(
       (data) => {
@@ -34,6 +50,12 @@ export class SupplierComponent implements OnInit {
         if (respuesta.msj === "Success") {
           /*Se convierte en un objeto JSON el listado de datos obtenido*/
           this.proveedores = JSON.parse(respuesta.data);
+          this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
+            // Destroy the table first
+            dtInstance.destroy();
+            // Call the dtTrigger to rerender again
+            this.dtTrigger.next();
+          });
         } else {
           this.proveedores = [];
         }
@@ -48,7 +70,14 @@ export class SupplierComponent implements OnInit {
       }
     );
   }
+  ngAfterViewInit(): void {
+    this.dtTrigger.next();
+  }
 
+  ngOnDestroy(): void {
+    // Do not forget to unsubscribe the event
+    this.dtTrigger.unsubscribe();
+  }
   saveSupplier() {
     /*Funcion que se encarga de almacenar la informacion del rol*/
     let postDataObj = new FormData();

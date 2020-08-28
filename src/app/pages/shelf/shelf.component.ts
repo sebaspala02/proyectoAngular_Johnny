@@ -1,5 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-
+import {
+  AfterViewInit,
+  Component,
+  OnDestroy,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
+import { DataTableDirective } from 'angular-datatables';
+import { Subject } from 'rxjs';
 import { NgForm } from '@angular/forms';
 import { HelperService } from 'src/app/util/HelperService';
 import { error } from '@angular/compiler/src/util';
@@ -12,6 +19,12 @@ import { ShelfService } from '../../services/shelf.service';
   styleUrls: ['./shelf.component.css']
 })
 export class ShelfComponent implements OnInit {
+  @ViewChild(DataTableDirective, { static: false })
+  dtElement: DataTableDirective;
+
+  dtOptions: DataTables.Settings = {};
+
+  dtTrigger: Subject<any> = new Subject();
 
   shelfs: ShelfInterface[] = [];
   shelfsData = {} as ShelfInterface;
@@ -28,7 +41,9 @@ export class ShelfComponent implements OnInit {
   }
 
   readShelf() {
-
+    this.dtOptions = {
+      pagingType: 'full_numbers',
+    };
     /*Se llama al metodo de listar roles definido en el servicio*/
     this.shelfService.readShelfs().subscribe(
       (data) => {
@@ -41,6 +56,12 @@ export class ShelfComponent implements OnInit {
         if (respuesta.msj === "Success") {
           /*Se convierte en un objeto JSON el listado de datos obtenido*/
           this.shelfs = JSON.parse(respuesta.data);
+          this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
+            // Destroy the table first
+            dtInstance.destroy();
+            // Call the dtTrigger to rerender again
+            this.dtTrigger.next();
+          });
         } else {
           this.shelfs = [];
         }
@@ -53,6 +74,15 @@ export class ShelfComponent implements OnInit {
         );
       }
     );
+  }
+
+  ngAfterViewInit(): void {
+    this.dtTrigger.next();
+  }
+
+  ngOnDestroy(): void {
+    // Do not forget to unsubscribe the event
+    this.dtTrigger.unsubscribe();
   }
 
   createShelf() {

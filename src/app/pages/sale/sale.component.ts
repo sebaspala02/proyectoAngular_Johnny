@@ -1,4 +1,12 @@
-import { Component, OnInit } from "@angular/core";
+import {
+  AfterViewInit,
+  Component,
+  OnDestroy,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
+import { DataTableDirective } from 'angular-datatables';
+import { Subject } from 'rxjs';
 import { SaleInterface } from "src/app/models/sale";
 import { HelperService } from "src/app/util/HelperService";
 import { SaleService } from "src/app/services/sale.service";
@@ -13,6 +21,13 @@ import { UserInterface } from "src/app/models/user";
   styleUrls: ["./sale.component.css"],
 })
 export class SaleComponent implements OnInit {
+  @ViewChild(DataTableDirective, { static: false })
+  dtElement: DataTableDirective;
+
+  dtOptions: DataTables.Settings = {};
+
+  dtTrigger: Subject<any> = new Subject();
+
   users: SaleInterface[] = [];
   products = [];
   cartProducts: CartProductInterface[] = [];
@@ -37,6 +52,9 @@ export class SaleComponent implements OnInit {
     this.listCustomers();
   }
   listProducts() {
+    this.dtOptions = {
+      pagingType: 'full_numbers',
+    };
     /*Se llama al metodo de listar roles definido en el servicio*/
     this.saleService.listProducts().subscribe(
       (data) => {
@@ -45,10 +63,15 @@ export class SaleComponent implements OnInit {
         if (respuesta.msj === "Success") {
           /*Se convierte en un objeto JSON el listado de datos obtenido*/
           this.products = JSON.parse(respuesta.data);
-          console.log(this.products);
           this.products = this.products.filter(
             (medi) => parseFloat(medi.cantidad) > 0
           );
+          this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
+            // Destroy the table first
+            dtInstance.destroy();
+            // Call the dtTrigger to rerender again
+            this.dtTrigger.next();
+          });
         } else {
           // console.log(dataxzzz)
           this.products = [];
@@ -73,7 +96,6 @@ export class SaleComponent implements OnInit {
         if (respuesta.msj === "Success") {
           /*Se convierte en un objeto JSON el listado de datos obtenido*/
           this.customers = JSON.parse(respuesta.data);
-          console.log(this.customers);
         } else {
           // console.log(dataxzzz)
           this.customers = [];
@@ -250,6 +272,15 @@ export class SaleComponent implements OnInit {
       this.helperService.openModal(true, "Alerta", "Codigo Incorrecto");
       this.clean();
     }
+  }
+  
+  ngAfterViewInit(): void {
+    this.dtTrigger.next();
+  }
+
+  ngOnDestroy(): void {
+    // Do not forget to unsubscribe the event
+    this.dtTrigger.unsubscribe();
   }
   clean() {
     this.listProducts();
