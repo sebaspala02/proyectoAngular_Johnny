@@ -277,4 +277,13 @@ export class UsersComponent implements OnInit {
     this.usersData = {} as UserInterface;
   }
 
+  ngAfterViewInit(): void {
+    this.dtTrigger.next();
+  }
+
+  ngOnDestroy(): void {
+    // Do not forget to unsubscribe the event
+    this.dtTrigger.unsubscribe();
+  }
+
 }
