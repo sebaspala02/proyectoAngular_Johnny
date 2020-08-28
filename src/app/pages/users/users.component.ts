@@ -1,5 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-
+import {
+  AfterViewInit,
+  Component,
+  OnDestroy,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
+import { DataTableDirective } from 'angular-datatables';
+import { Subject } from 'rxjs';
 import { NgForm } from '@angular/forms';
 import { HelperService } from 'src/app/util/HelperService';
 import { UserInterface } from "src/app/models/user";
@@ -14,7 +21,12 @@ import { TypeUserInterface } from '../../models/typeUser';
   styleUrls: ['./users.component.css']
 })
 export class UsersComponent implements OnInit {
+  @ViewChild(DataTableDirective, { static: false })
+  dtElement: DataTableDirective;
 
+  dtOptions: DataTables.Settings = {};
+
+  dtTrigger: Subject<any> = new Subject();
   // public IDusuario = null;
 
   users: UserInterface[] = [];
@@ -47,7 +59,9 @@ export class UsersComponent implements OnInit {
   }
 
   readUser() {
-
+    this.dtOptions = {
+      pagingType: 'full_numbers',
+    };
     /*Se llama al metodo de listar roles definido en el servicio*/
     this.userService.readUsers().subscribe(
       (data) => {
@@ -60,6 +74,12 @@ export class UsersComponent implements OnInit {
         if (respuesta.msj === "Success") {
           /*Se convierte en un objeto JSON el listado de datos obtenido*/
           this.users = JSON.parse(respuesta.data);
+          this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
+            // Destroy the table first
+            dtInstance.destroy();
+            // Call the dtTrigger to rerender again
+            this.dtTrigger.next();
+          });
         } else {
           this.users = [];
         }

@@ -25,7 +25,7 @@ import { CustomerComponent } from './customer/customer.component';
 import { FormsModule } from '@angular/forms';
 import { PagesComponent } from './pages.component';
 import { ComponentsModule } from '../components/components.module';
-
+import { DataTablesModule } from 'angular-datatables';
 
 @NgModule({
   declarations: [UsersComponent,
@@ -49,7 +49,8 @@ import { ComponentsModule } from '../components/components.module';
     PagesRoutingModule,
     FormsModule,
     HttpClientModule,
-    ComponentsModule
+    ComponentsModule,
+    DataTablesModule
   ],
   providers: [HttpClientModule]
 })
