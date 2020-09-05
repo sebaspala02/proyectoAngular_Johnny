@@ -7,20 +7,23 @@
     <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
         <img class="mb-2 align-middle" src="/assets/brand/herramientas-y-utensilios.svg" alt="" width="32" height="32">
         <h5 class="navbar-brand my-0 mr-md-auto font-weight-normal"> <a class="p-2 text-dark" [routerLink]="['home']">
-                <b>Inicio</b></a> </h5>
+                <b>{{'Inicio'|translate}}</b></a> </h5>
         <ul class="navbar-nav mt-2 mt-lg-0 derecha">
+            <!-- <p>{{'Inicio'|translate}}</p> -->
+            <input type="button" value="Español" (click)="selectLang('es')">
+            <input type="button" value="English" (click)="selectLang('en')">
             <li class="nav-item active">
-                <a class="p-2 text-dark" [routerLink]="['users']"><b>Usuarios</b></a></li>
+                <a class="p-2 text-dark" [routerLink]="['users']"><b>{{'Usuarios'|translate}}</b></a></li>
             <li class="nav-item active">
-                <a class="p-2 text-dark" [routerLink]="['shelf']"><b>Estanteria</b></a></li>
+                <a class="p-2 text-dark" [routerLink]="['shelf']"><b>{{'Estanteria'|translate}}</b></a></li>
             <li class="nav-item active">
-                <a class="p-2 text-dark" [routerLink]="['suppliers']"><b>Proveedores</b></a></li>
+                <a class="p-2 text-dark" [routerLink]="['suppliers']"><b>{{'Proveedores'|translate}}</b></a></li>
             <li class="nav-item active">
-                <a class="p-2 text-dark" [routerLink]="['drug']"><b>Medicamentos</b></a></li>
-            <!-- <li class="nav-item active">
-                <a class="p-2 text-dark" [routerLink]="['sale']"><b>Registrar Venta</b></a></li> -->
-            <!-- <li class="nav-item active">
-                <a class="p-2 text-dark" [routerLink]="['saleList']"><b>Listar Venta</b></a></li> -->
+                <a class="p-2 text-dark" [routerLink]="['drug']"><b>{{'Medicamentos'|translate}}</b></a></li>
+            <li class="nav-item active">
+                <a class="p-2 text-dark" [routerLink]="['sale']"><b>{{'Registrar Venta'|translate}}</b></a></li>
+            <li class="nav-item active">
+                <a class="p-2 text-dark" [routerLink]="['saleList']"><b>{{'Listar Venta'|translate}}</b></a></li>
             <!-- <li class="nav-item active">
                 <a class="p-2 text-dark" [routerLink]="['reportsCSV']"><b>Reportes CSV</b></a></li> -->
             <!-- <li class="nav-item active">
@@ -30,10 +33,10 @@
             <!-- <li class="nav-item active">
                 <a class="p-2 text-primary" [routerLink]="['profileClient']"><b>♦ Perfil</b></a></li> -->
             <li class="nav-item active">
-                <a class="p-2 text-dark" [routerLink]="['laboratory']"><b>laboratorio</b></a></li>
-                <li class="nav-item active">
-                    <a class="p-2 text-dark" [routerLink]="['customer']"><b>Clientes</b></a></li>
+                <a class="p-2 text-dark" [routerLink]="['laboratory']"><b>{{'laboratorio'|translate}}</b></a></li>
+            <li class="nav-item active">
+                <a class="p-2 text-dark" [routerLink]="['customer']"><b>{{'Clientes'|translate}}</b></a></li>
         </ul>
-        <a class="btn btn-outline-primary" (click)="logOut()"><b>Cerrar Sesión</b></a>
+        <a class="btn btn-outline-primary" (click)="logOut()"><b>{{'Cerrar Sesión'|translate}}</b></a>
     </div>
 </nav>

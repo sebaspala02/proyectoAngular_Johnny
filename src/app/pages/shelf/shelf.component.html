@@ -2,55 +2,55 @@
     <div class="row">
         <div class="col col-md-4">
             <div class="form-container">
-                <h2>Gestionar Estanterias</h2>
+                <h2>{{'Gestionar Estanterias'|translate}}</h2>
                 <!-- (ngSubmit)="onSaveForm()" -->
                 <form class="needs-validation" #shelfForm="ngForm">
 
                     <input style="display: none" type="text" id="idestante" name="idestante" [(ngModel)]="shelfsData.idestante">
 
-                    <b> <label for="validationCustom01">Codigo <a style="color: red;">*</a></label></b>
+                    <b> <label for="validationCustom01">{{'Codigo'|translate}} <a style="color: red;">*</a></label></b>
                     <input id="validationCustom01" name="codigo" type="text" placeholder="Codigo" class="form-control"
                         [(ngModel)]="shelfsData.codigo" required autofocus>
                     <div class="valid-feedback">
-                        Ingresado correcatmente!
+                        {{'Ingresado correcatmente'|translate}}!
                     </div>
 
-                    <b> <label for="validationCustom02">Categoria <a style="color: red;">*</a></label></b>
+                    <b> <label for="validationCustom02">{{'Categoria'|translate}} <a style="color: red;">*</a></label></b>
                     <input id="validationCustom02" name="categoria" type="text" placeholder="Categoria" class="form-control"
                         [(ngModel)]="shelfsData.categoria" required autofocus>
                     <div class="valid-feedback">
-                        Ingresado correcatmente!
+                        {{'Ingresado correcatmente'|translate}}!
                     </div>
 
-                    <b> <label for="validationCustom03">Descripción <a style="color: red;">*</a></label></b>
+                    <b> <label for="validationCustom03">{{'Descripción'|translate}} <a style="color: red;">*</a></label></b>
                     <input id="validationCustom03" name="descripcion" type="text" placeholder="Descripcion"
                         class="form-control" [(ngModel)]="shelfsData.descripcion" required autofocus>
                     <div class="valid-feedback">
-                        Ingresado correcatmente!
+                        {{'Ingresado correcatmente'|translate}}!
                     </div>
 
                     <div class="mx-auto" style="width: 230px;">
                         <tr>
                             <td class="pRigth">
                                 <button type="submit" class="btn btn-success btn-block" [disabled]="shelfForm.invalid"
-                                    (click)="createShelf()"><b>Guardar</b></button>
+                                    (click)="createShelf()"><b>{{'Guardar'|translate}}</b></button>
                                 <!-- btn-send -->
                             </td>
                             <td class="pRigth">
                                 <button type="submit" class="btn btn-warning btn-block" [disabled]="shelfForm.invalid"
-                                    (click)="createShelf()"><b>Actualizar</b></button>
+                                    (click)="createShelf()"><b>{{'Actualizar'|translate}}</b></button>
                             </td>
                         </tr>
                         <tr>&nbsp;</tr>
                         <tr>
                             <td class="pRigth">
                                 <button type="submit" class="btn btn-danger btn-block" [disabled]="shelfForm.invalid"
-                                    (click)="deleteShelf()"><b>Eliminar</b></button>
+                                    (click)="deleteShelf()"><b>{{'Eliminar'|translate}}</b></button>
                                 <!-- btn-send -->
                             </td>
                             <td class="pRigth">
                                 <button type="submit" class="btn btn-outline-dark btn-block"
-                                    [disabled]="shelfForm.invalid" (click)="cleanShelf()"><b>Limpiar</b></button>
+                                    [disabled]="shelfForm.invalid" (click)="cleanShelf()"><b>{{'Limpiar'|translate}}</b></button>
                             </td>
                         </tr>
                     </div>
@@ -59,7 +59,7 @@
         </div>
         <div class="col col-md-8">
             <div class="form-containerD">
-                <h2 class="text-center">Datos Estanterias</h2>
+                <h2 class="text-center">{{'Datos Estanterias'|translate}}</h2>
                 <table>
                     <tr>
                         <td rowspan="10">
@@ -68,9 +68,9 @@
                                     <tr>
                                         <th>#</th>
                                         <th style="display: none"></th>
-                                        <th>Codigo</th>
-                                        <th>Categoria</th>
-                                        <th>Descripcion</th>
+                                        <th>{{'Codigo'|translate}}</th>
+                                        <th>{{'Categoria'|translate}}</th>
+                                        <th>{{'Descripcion'|translate}}</th>
                                     </tr>
                                 </thead>
                                 <!-- <tbody id="listaUsuarios">

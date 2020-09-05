@@ -2,28 +2,28 @@
     <div class="row">
         <div class="col col-md-4">
             <div class="form-container">
-                <h2>Gestionar Proveedores</h2>
+                <h2>{{'Gestionar Proveedores'|translate}}</h2>
                 <!-- (ngSubmit)="onSaveForm()" -->
                 <form class="form" #supplierForm="ngForm">
 
                     <input type="text" id="id" name="id" [(ngModel)]="proveedorData.id"
                         style="display: none">
 
-                    <b> <label for="nit">NIT <a style="color: red;">*</a></label></b>
+                    <b> <label for="nit">{{'NIT'|translate}} <a style="color: red;">*</a></label></b>
                     <input id="nit" name="nit" type="number" placeholder="NIT" class="form-control"
                         [(ngModel)]="proveedorData.nit" required autofocus>
 
-                    <b> <label for="nombre">Nombre <a style="color: red;">*</a></label></b>
+                    <b> <label for="nombre">{{'Nombre'|translate}} <a style="color: red;">*</a></label></b>
                     <input id="nombre" name="nombre" type="text" placeholder="Nombre" class="form-control"
                         [(ngModel)]="proveedorData.nombre" required autofocus>
-                    <b> <label for="ciudad">Ciudad <a style="color: red;">*</a></label></b>
+                    <b> <label for="ciudad">{{'Ciudad'|translate}} <a style="color: red;">*</a></label></b>
                     <input type="email" id="ciudad" name="ciudad" placeholder="Ciudad" class="form-control"
                         [(ngModel)]="proveedorData.ciudad" required autofocus>
-                    <b> <label for="direccion">Direccion <a style="color: red;">*</a></label></b>
+                    <b> <label for="direccion">{{'Direccion'|translate}} <a style="color: red;">*</a></label></b>
                     <input id="direccion" name="direccion" type="text" placeholder="Direccion" class="form-control"
                         [(ngModel)]="proveedorData.direccion" required autofocus>
 
-                    <b> <label for="telefono">Telefono <a style="color: red;">*</a></label></b>
+                    <b> <label for="telefono">{{'Telefono'|translate}} <a style="color: red;">*</a></label></b>
                     <input type="number" id="telefono" name="telefono" class="form-control" placeholder="Telefono"
                         [(ngModel)]="proveedorData.telefono" required autofocus>
 
@@ -39,12 +39,12 @@
                     <tr>
                         <td class="pRigth">
                             <button type="submit" class="btn btn-success btn-block" [disabled]="supplierForm.invalid"
-                                (click)="saveSupplier()"><b>Guardar</b></button>
+                                (click)="saveSupplier()"><b>{{'Guardar'|translate}}</b></button>
                             <!-- btn-send -->
                         </td>
                         <td class="pRigth">
                             <button type="submit" class="btn btn-warning btn-block" [disabled]="supplierForm.invalid"
-                                (click)="saveSupplier()"><b>Actualizar</b></button>
+                                (click)="saveSupplier()"><b>{{'Actualizar'|translate}}</b></button>
                         </td>
                     </tr>
                     <tr>&nbsp;</tr>
@@ -52,12 +52,12 @@
                         <td class="pRigth">
                             <button type="submit" class="btn btn-danger btn-block" [disabled]="supplierForm.invalid"
                                 (click)="deleteSupplier()">
-                                <b>Eliminar</b></button>
+                                <b>{{'Eliminar'|translate}}</b></button>
                             <!-- btn-send -->
                         </td>
                         <td class="pRigth">
                             <button type="submit" class="btn btn-outline-dark btn-block"
-                                [disabled]="supplierForm.invalid" (click)="cleanSupplier()"><b>Limpiar</b></button>
+                                [disabled]="supplierForm.invalid" (click)="cleanSupplier()"><b>{{'Limpiar'|translate}}</b></button>
                         </td>
                     </tr>
                     <!-- </div> -->
@@ -66,7 +66,7 @@
         </div>
         <div class="col col-md-7">
             <div class="form-containerD">
-                <h2 class="text-center">Proveedores</h2>
+                <h2 class="text-center">{{'Proveedores'|translate}}</h2>
                 <table>
                     <tr>
                         <td rowspan="10">
@@ -76,10 +76,10 @@
                                         <th>#</th>
                                         <th>#ID</th>
                                         <th>NIT</th>
-                                        <th>Nombre</th>
-                                        <th>Ciudad</th>
-                                        <th>Direccion</th>
-                                        <th>Telefono</th>
+                                        <th>{{'Nombre'|translate}}</th>
+                                        <th>{{'Ciudad'|translate}}</th>
+                                        <th>{{'Direccion'|translate}}</th>
+                                        <th>{{'Telefono'|translate}}</th>
                                     </tr>
                                 </thead>
                                 <!-- <tbody id="listaUsuarios">

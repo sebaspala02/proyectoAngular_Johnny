@@ -12,6 +12,10 @@ import { AuthModule } from './auth/auth.module';
 
 // import { AuthService } from './services/auth.service';
 import { PagesModule } from './pages/pages.module';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateHttpLoader } from "@ngx-translate/http-loader";
 
 @NgModule({
   declarations: [
@@ -22,7 +26,17 @@ import { PagesModule } from './pages/pages.module';
     AppRoutingModule,
     AuthModule,
     PagesModule,
-    DataTablesModule
+    DataTablesModule,
+    HttpClientModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: (http: HttpClient) => {
+          return new TranslateHttpLoader(http);
+        },
+        deps: [HttpClient]
+      }
+    })
   ],
   // AuthService
   providers: [],

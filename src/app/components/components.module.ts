@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
 import { RouterModule } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { RouterModule } from '@angular/router';
   exports: [NavbarComponent, FooterComponent],
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    TranslateModule
   ]
 })
 export class ComponentsModule { }

@@ -4,6 +4,7 @@ import { LoginService } from 'src/app/services/login.service';
 import { HelperService } from 'src/app/util/HelperService';
 import { Router } from '@angular/router';
 import { LoginInterface } from '../../models/login';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-login',
@@ -18,10 +19,16 @@ export class LoginComponent implements OnInit {
     (
       private loginService: LoginService,
       private helperService: HelperService,
-      private router: Router
+      private router: Router,
+      private translateService: TranslateService
     ) { }
 
   ngOnInit(): void {
+    this.translateService.setDefaultLang('es');
+  }
+
+  selectLang(lang: string) {
+    this.translateService.use(lang);
   }
 
   logIn() {

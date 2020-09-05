@@ -26,6 +26,7 @@ import { FormsModule } from '@angular/forms';
 import { PagesComponent } from './pages.component';
 import { ComponentsModule } from '../components/components.module';
 import { DataTablesModule } from 'angular-datatables';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [UsersComponent,
@@ -50,7 +51,8 @@ import { DataTablesModule } from 'angular-datatables';
     FormsModule,
     HttpClientModule,
     ComponentsModule,
-    DataTablesModule
+    DataTablesModule,
+    TranslateModule
   ],
   providers: [HttpClientModule]
 })

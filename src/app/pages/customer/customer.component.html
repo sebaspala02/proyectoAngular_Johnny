@@ -2,38 +2,38 @@
     <div class="row">
         <div class="col col-md-4">
             <div class="form-container">
-                <h2>Gestionar Clientes</h2>
+                <h2>{{'Gestionar Clientes'|translate}}</h2>
                 <!-- (ngSubmit)="onSaveForm()" -->
                 <form class="needs-validation" #userForm="ngForm">
 
                     <input style="display: none" type="text" id="idusuario" name="idusuario" [(ngModel)]="idusuario">
 
-                    <b> <label for="validationCustom01">Cedula <a style="color: red;">*</a></label></b>
+                    <b> <label for="validationCustom01">{{'Cedula'|translate}} <a style="color: red;">*</a></label></b>
                     <input id="validationCustom01" name="cedula" type="number" placeholder="Cedula" class="form-control"
                         [(ngModel)]="usersData.cedula" required autofocus>
                     <div class="valid-feedback">
-                        Ingresado correcatmente!
+                        {{'Ingresado correcatmente'|translate}}!
                     </div>
 
-                    <b> <label for="validationCustom02">Nombre <a style="color: red;">*</a></label></b>
+                    <b> <label for="validationCustom02">{{'Nombre'|translate}} <a style="color: red;">*</a></label></b>
                     <input id="validationCustom02" name="nombre" type="text" placeholder="Nombre" class="form-control"
                         [(ngModel)]="usersData.nombre" required autofocus>
                     <div class="valid-feedback">
-                        Ingresado correcatmente!
+                        {{'Ingresado correcatmente'|translate}}!
                     </div>
 
-                    <b> <label for="validationCustom03">Apellido <a style="color: red;">*</a></label></b>
+                    <b> <label for="validationCustom03">{{'Apellido'|translate}} <a style="color: red;">*</a></label></b>
                     <input id="validationCustom03" name="apellido" type="text" placeholder="Apellido"
                         class="form-control" [(ngModel)]="usersData.apellido" required autofocus>
                     <div class="valid-feedback">
-                        Ingresado correcatmente!
+                        {{'Ingresado correcatmente'|translate}}!
                     </div>
 
-                    <b> <label for="inputEmail">Correo <a style="color: red;">*</a></label></b>
+                    <b> <label for="inputEmail">{{'Correo'|translate}} <a style="color: red;">*</a></label></b>
                     <input type="email" id="inputEmail" name="correo" placeholder="Correo" class="form-control"
                         [(ngModel)]="usersData.correo" required autofocus>
                     <div class="invalid-feedback">
-                        Ingresa un correo valido con las caracteristicas de " @ " y " .com "
+                        {{'Ingresa un correo valido con las caracteristicas de'|translate}} " @ " y " .com "
                     </div>
 
                     <!-- <b> <label for="validationCustom04">Tipo Usuario <a style="color: red;">*</a></label></b>
@@ -46,14 +46,14 @@
                         Seleccionado Correcatmente!
                     </div> -->
 
-                    <b> <label for="validationCustom04">Usuario <a style="color: red;">*</a></label></b>
+                    <b> <label for="validationCustom04">{{'Usuario'|translate}} <a style="color: red;">*</a></label></b>
                     <input type="text" id="validationCustom04" name="usuario" class="form-control" placeholder="Usuario"
                         [(ngModel)]="usersData.usuario" required autofocus>
                     <div class="valid-feedback">
                         Ingresado correcatmente!
                     </div>
 
-                    <b> <label for="validationCustom05">Contraseña <a style="color: red;">*</a></label></b>
+                    <b> <label for="validationCustom05">{{'Contraseña'|translate}} <a style="color: red;">*</a></label></b>
                     <input type="password" id="validationCustom05" name="password" class="form-control"
                         placeholder="Contraseña" [(ngModel)]="usersData.password" required autofocus>
                     <div class="valid-feedback">
@@ -64,24 +64,24 @@
                         <tr>
                             <td class="pRigth">
                                 <button type="submit" class="btn btn-success btn-block" [disabled]="userForm.invalid"
-                                    (click)="createUser()"><b>Guardar</b></button>
+                                    (click)="createUser()"><b>{{'Guardar'|translate}}</b></button>
                                 <!-- btn-send -->
                             </td>
                             <td class="pRigth">
                                 <button type="submit" class="btn btn-warning btn-block" [disabled]="userForm.invalid"
-                                    (click)="createUser()"><b>Actualizar</b></button>
+                                    (click)="createUser()"><b>{{'Actualizar'|translate}}</b></button>
                             </td>
                         </tr>
                         <tr>&nbsp;</tr>
                         <tr>
                             <td class="pRigth">
                                 <button type="submit" class="btn btn-danger btn-block" [disabled]="userForm.invalid"
-                                    (click)="deleteUser()"><b>Eliminar</b></button>
+                                    (click)="deleteUser()"><b>{{'Eliminar'|translate}}</b></button>
                                 <!-- btn-send -->
                             </td>
                             <td class="pRigth">
                                 <button type="submit" class="btn btn-outline-dark btn-block"
-                                    [disabled]="userForm.invalid" (click)="cleanUser()"><b>Limpiar</b></button>
+                                    [disabled]="userForm.invalid" (click)="cleanUser()"><b>{{'Limpiar'|translate}}</b></button>
                             </td>
                         </tr>
                     </div>
@@ -90,7 +90,7 @@
         </div>
         <div class="col col-md-8">
             <div class="form-containerD">
-                <h2 class="text-center">Datos Clientes</h2>
+                <h2 class="text-center">{{'Datos Clientes'|translate}}</h2>
                 <table>
                     <tr>
                         <td rowspan="10">
@@ -98,14 +98,14 @@
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>Cedula</th>
-                                        <th>Nombre</th>
-                                        <th>Apellido</th>
-                                        <th>Correo</th>
-                                        <th>Tipo Usuario</th>
-                                        <th>Usuario</th>
-                                        <th>Password</th>
-                                        <th>Puntos</th>
+                                        <th>{{'Cedula'|translate}}</th>
+                                        <th>{{'Nombre'|translate}}</th>
+                                        <th>{{'Apellido'|translate}}</th>
+                                        <th>{{'Correo'|translate}}</th>
+                                        <th>{{'Tipo Usuario'|translate}}</th>
+                                        <th>{{'Usuario'|translate}}</th>
+                                        <th>{{'Password'|translate}}</th>
+                                        <th>{{'Puntos'|translate}}</th>
                                     </tr>
                                 </thead>
                                 <!-- <tbody id="listaUsuarios">

@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col col-md-7">
             <div class="form-containerD">
-                <h2 class="text-center">Productos</h2>
+                <h2 class="text-center">{{'Productos'|translate}}</h2>
                 <table>
                     <tr>
                         <td rowspan="10">
@@ -11,13 +11,13 @@
                                     <tr>
                                         <th style="display: none">id</th>
                                         <th>#</th>
-                                        <th>Nombre</th>
-                                        <th>Descripción</th>
-                                        <th>Vencimiento</th>
-                                        <th>Cantidad</th>
-                                        <th>Precio</th>
-                                        <th>Laboratorio</th>
-                                        <th>Proveedor</th>
+                                        <th>{{'Nombre'|translate}}</th>
+                                        <th>{{'Descripción'|translate}}</th>
+                                        <th>{{'Vencimiento'|translate}}</th>
+                                        <th>{{'Cantidad'|translate}}</th>
+                                        <th>{{'Precio'|translate}}</th>
+                                        <th>{{'Laboratorio'|translate}}</th>
+                                        <th>{{'Proveedor'|translate}}</th>
                                     </tr>
                                 </thead>
                                 <tbody id="listaMedi">
@@ -64,7 +64,7 @@
         <!-- car shopping -->
         <div class="col col-md-5">
             <div class="form-containerD cart">
-                <h2 class="text-center">Carrito de Compra</h2>
+                <h2 class="text-center">{{'Carrito de Compra'|translate}}</h2>
                 <form class="needs-validation" #clientForm="ngForm">
                     <label for="txtIdClienteVenta"><b>Cliente: &nbsp;</b></label>
                     <select class="form-control" id="txtIdClienteVenta" name="client"
@@ -80,10 +80,10 @@
                         <input type="text" id="txtIddetalleventa" style="display: none" value="">
                         <tr>
                             <th style="display: none">id</th>
-                            <th>Medicamento</th>
-                            <th>Cantidad</th>
-                            <th>Inventario</th>
-                            <th>Precio Unit.</th>
+                            <th>{{'Medicamento'|translate}}</th>
+                            <th>{{'Cantidad'|translate}}</th>
+                            <th>{{'Inventario'|translate}}</th>
+                            <th>{{'Precio'|translate}} Unit.</th>
                             <th>Accion</th>
                         </tr>
                     </thead>

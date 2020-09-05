@@ -6,6 +6,7 @@ import { LoginComponent } from './login/login.component';
 import { RouterModule } from '@angular/router';
 
 import { FormsModule } from '@angular/forms';
+import { TranslateModule } from '@ngx-translate/core';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { FormsModule } from '@angular/forms';
     CommonModule,
     AuthRoutingModule,
     RouterModule,
-    FormsModule
+    FormsModule,
+    TranslateModule
   ]
 })
 export class AuthModule { }

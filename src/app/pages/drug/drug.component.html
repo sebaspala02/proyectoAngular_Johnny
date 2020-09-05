@@ -2,58 +2,58 @@
     <div class="row">
         <div class="col col-md-3 little_font">
             <div class="form-container">
-                <h2>Gestionar Medicamentos</h2>
+                <h2>{{'Gestionar Medicamentos'|translate}}</h2>
                 <form class="form" #drugForm="ngForm">
 
                     <input style="display: none" type="text" id="idmedicamento" name="idmedicamento"
                         [(ngModel)]="idmedicamento">
 
-                    <b> <label for="nombre">Nombre <a style="color: red;">*</a></label></b>
+                    <b> <label for="nombre">{{'Nombre'|translate}} <a style="color: red;">*</a></label></b>
                     <input id="nombre" name="nombre" type="text" placeholder="Nombre" class="form-control"
                         [(ngModel)]="drugsData.nombre" required autofocus>
 
-                    <b> <label for="description">Descripción <a style="color: red;">*</a></label></b>
+                    <b> <label for="description">{{'Descripción'|translate}} <a style="color: red;">*</a></label></b>
                     <textarea id="description" name="descrip" type="text" placeholder="Descripción" class="form-control"
                         [(ngModel)]="drugsData.descrip" required autofocus></textarea>
 
-                    <b> <label for="inputExpiry">Fecha de Vencimiento <a style="color: red;">*</a></label></b>
+                    <b> <label for="inputExpiry">{{'Fecha de Vencimiento'|translate}} <a style="color: red;">*</a></label></b>
                     <input type="date" id="inputExpiry" name="fecha_venc" placeholder="Fecha de Vencimiento"
                         class="form-control" [(ngModel)]="drugsData.fecha_venc" required autofocus>
 
-                    <b> <label for="inputCant">Cantidad <a style="color: red;">*</a></label></b>
+                    <b> <label for="inputCant">{{'Cantidad'|translate}} <a style="color: red;">*</a></label></b>
                     <input type="number" id="inputCant" class="form-control" name="cant" placeholder="Cantidad"
                         [(ngModel)]="drugsData.cant" required autofocus>
 
-                    <b> <label for="inputCreation">Fecha de Creación <a style="color: red;">*</a></label></b>
+                    <b> <label for="inputCreation">{{'Fecha de Creación'|translate}} <a style="color: red;">*</a></label></b>
                     <input type="date" id="inputCreation" class="form-control" name="fecha_creado"
                         placeholder="Fecha de Creación" [(ngModel)]="drugsData.fecha_creado" required autofocus>
 
-                    <b> <label for="inputPrice">Precio <a style="color: red;">*</a></label></b>
+                    <b> <label for="inputPrice">{{'Precio'|translate}} <a style="color: red;">*</a></label></b>
                     <input type="number" id="inputPrice" class="form-control" name="precio" placeholder="Precio"
                         [(ngModel)]="drugsData.precio" required autofocus>
 
-                    <b> <label for="inputUser">Usuario <a style="color: red;">*</a></label></b>
+                    <b> <label for="inputUser">{{'Usuario'|translate}} <a style="color: red;">*</a></label></b>
                     <select class="form-control" id="idUsers" name="usuario_idusuario"
                         [(ngModel)]="drugsData.usuario_idusuario" required autofocus>
                         <option *ngFor="let usuario of users" value="{{usuario.idusuario}}">
                             {{usuario.nombre}}</option>
                     </select>
 
-                    <b> <label for="inputLab">Laboratorio <a style="color: red;">*</a></label></b>
+                    <b> <label for="inputLab">{{'Laboratorio'|translate}} <a style="color: red;">*</a></label></b>
                     <select class="form-control" id="idLab" name="laboratorio_idlaboratorio"
                         [(ngModel)]="drugsData.laboratorio_idlaboratorio" required autofocus>
                         <option *ngFor="let laboratorio of labs" value="{{laboratorio.idlaboratorio}}">
                             {{laboratorio.nombre}}</option>
                     </select>
 
-                    <b> <label for="inputProv">Proveedor <a style="color: red;">*</a></label></b>
+                    <b> <label for="inputProv">{{'Proveedor'|translate}} <a style="color: red;">*</a></label></b>
                     <select class="form-control" id="idProv" name="proveedor_id" [(ngModel)]="drugsData.proveedor_id"
                         required autofocus>
                         <option *ngFor="let proveedor of suppliers" value="{{proveedor.id}}">
                             {{proveedor.nombre}}</option>
                     </select>
 
-                    <b> <label for="inputShelf">Categoria <a style="color: red;">*</a></label></b>
+                    <b> <label for="inputShelf">{{'Categoria'|translate}} <a style="color: red;">*</a></label></b>
                     <select class="form-control" id="idShelf" name="estante_idestante"
                         [(ngModel)]="drugsData.estante_idestante" required autofocus>
                         <option *ngFor="let estante of shelfs" value="{{estante.idestante}}">
@@ -66,23 +66,23 @@
                         <tr>
                             <td class="pRigth">
                                 <button type="submit" class="btn btn-success btn-block"
-                                     (click)="createDrug()"><b>Guardar</b></button>
+                                     (click)="createDrug()"><b>{{'Guardar'|translate}}</b></button>
                                      <!-- [disabled]="drugForm.invalid" -->
                             </td>
                             <td class="pRigth">
                                 <button type="submit" class="btn btn-warning btn-block"
-                                    (click)="createDrug()"><b>Actualizar</b></button>
+                                    (click)="createDrug()"><b>{{'Actualizar'|translate}}</b></button>
                             </td>
                         </tr>
                         <tr>&nbsp;</tr>
                         <tr>
                             <td class="pRigth">
                                 <button type="submit" class="btn btn-danger btn-block"
-                                     (click)="deleteDrug()"><b>Eliminar</b></button>
+                                     (click)="deleteDrug()"><b>{{'Eliminar'|translate}}</b></button>
                             </td>
                             <td class="pRigth">
                                 <button type="submit" class="btn btn-outline-dark btn-block"
-                                     (click)="cleanDrug()"><b>Limpiar</b></button>
+                                     (click)="cleanDrug()"><b>{{'Limpiar'|translate}}</b></button>
                             </td>
                         </tr>
                     </div>

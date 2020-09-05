@@ -2,49 +2,49 @@
     <div class="row">
         <div class="col col-md-6">
             <div class="form-container">
-                <h2>Gestionar Laboratorio</h2>
+                <h2>{{'Gestionar Laboratorio'|translate}}</h2>
                 <!-- (ngSubmit)="onSaveForm()" -->
                 <form class="needs-validation" #labForm="ngForm">
 
                     <input style="display: none" type="text" id="idlaboratorio" name="idlaboratorio"
                         [(ngModel)]="idlaboratorio">
 
-                    <b> <label for="validationCustom01">Nombre <a style="color: red;">*</a></label></b>
+                    <b> <label for="validationCustom01">{{'Nombre'|translate}} <a style="color: red;">*</a></label></b>
                     <input id="validationCustom01" name="nombre" type="text" placeholder="Nombre Lab."
                         class="form-control" [(ngModel)]="labsData.nombre" required autofocus>
                     <div class="valid-feedback">
-                        Ingresado correcatmente!
+                        {{'Ingresado correcatmente'|translate}}!!
                     </div>
 
-                    <b> <label for="validationCustom02">Descripción del Lab. <a style="color: red;">*</a></label></b>
+                    <b> <label for="validationCustom02">{{'Descripción del Lab'|translate}}. <a style="color: red;">*</a></label></b>
                     <textarea id="validationCustom02" name="descipcion" type="text" placeholder="Descripción"
                         class="form-control" [(ngModel)]="labsData.descrip" required autofocus></textarea>
                     <div class="valid-feedback">
-                        Ingresado correcatmente!
+                        {{'Ingresado correcatmente'|translate}}!!
                     </div>
 
                     <div class="mx-auto" style="width: 230px;">
                         <tr>
                             <td class="pRigth">
                                 <button type="submit" class="btn btn-success btn-block" [disabled]="labForm.invalid"
-                                    (click)="createLab()"><b>Guardar</b></button>
+                                    (click)="createLab()"><b>{{'Guardar'|translate}}</b></button>
                                 <!-- btn-send -->
                             </td>
                             <td class="pRigth">
                                 <button type="submit" class="btn btn-warning btn-block" [disabled]="labForm.invalid"
-                                    (click)="createLab()"><b>Actualizar</b></button>
+                                    (click)="createLab()"><b>{{'Actualizar'|translate}}</b></button>
                             </td>
                         </tr>
                         <tr>&nbsp;</tr>
                         <tr>
                             <td class="pRigth">
                                 <button type="submit" class="btn btn-danger btn-block" [disabled]="labForm.invalid"
-                                    (click)="deleteLab()"><b>Eliminar</b></button>
+                                    (click)="deleteLab()"><b>{{'Eliminar'|translate}}</b></button>
                                 <!-- btn-send -->
                             </td>
                             <td class="pRigth">
                                 <button type="submit" class="btn btn-outline-dark btn-block"
-                                    [disabled]="labForm.invalid" (click)="cleanLab()"><b>Limpiar</b></button>
+                                    [disabled]="labForm.invalid" (click)="cleanLab()"><b>{{'Limpiar'|translate}}</b></button>
                             </td>
                         </tr>
                     </div>
@@ -53,7 +53,7 @@
         </div>
         <div class="col col-md-6">
             <div class="form-containerD">
-                <h2 class="text-center">Datos Laboratorios</h2>
+                <h2 class="text-center">{{'Datos Laboratorios'|translate}}</h2>
                 <table>
                     <tr>
                         <td rowspan="10">
@@ -62,8 +62,8 @@
                                     <tr>
                                         <th>#</th>
                                         <th style="display: none">  </th>
-                                        <th>Nombre</th>
-                                        <th>Descripción</th>
+                                        <th>{{'Nombre'|translate}}</th>
+                                        <th>{{'Descripción'|translate}}</th>
                                     </tr>
                                 </thead>
                                 <!-- <tbody id="listaUsuarios">
