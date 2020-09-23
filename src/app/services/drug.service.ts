@@ -22,16 +22,19 @@ export class DrugService {
   }
 
   searchDrugs(postData: any) {
+    postData.append('token', this.helperService.generarToken());
     const url_api = `http://localhost/taller1ElectivaII/controller/ctlMedi.php`;
     return this.http.post<any>(url_api, postData);
   }
 
   createDrugs(postData: any) {
+    postData.append('token', this.helperService.generarToken());
     const url_api = `http://localhost/taller1ElectivaII/controller/ctlMedi.php`;
     return this.http.post<any>(url_api, postData);
   }
 
   deleteDrugs(postData: any) {
+    postData.append('token', this.helperService.generarToken());
     const url_api = `http://localhost/taller1ElectivaII/controller/ctlMedi.php`;
     return this.http.post<any>(url_api, postData);
   }

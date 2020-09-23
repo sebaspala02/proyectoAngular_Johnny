@@ -24,16 +24,19 @@ export class ShelfService {
   }
 
   createShelfs(postData: any) {
+    postData.append('token', this.helperService.generarToken());
     const url_api = `http://localhost/taller1ElectivaII/controller/ctlEstante.php`;
     return this.http.post<any>(url_api, postData);
   }
 
   searchShelfs(postData: any) {
+    postData.append('token', this.helperService.generarToken());
     const url_api = `http://localhost/taller1ElectivaII/controller/ctlEstante.php`;
     return this.http.post<any>(url_api, postData);
   }
 
   deleteShelfs(postData: any) {
+    postData.append('token', this.helperService.generarToken());
     const url_api = `http://localhost/taller1ElectivaII/controller/ctlEstante.php`;
     return this.http.post<any>(url_api, postData);
   }

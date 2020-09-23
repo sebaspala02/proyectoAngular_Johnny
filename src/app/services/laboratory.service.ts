@@ -26,16 +26,19 @@ export class LaboratoryService {
   }
 
   createLabs(postData: any) {
+    postData.append('token', this.helperService.generarToken());
     const url_api = `http://localhost/taller1ElectivaII/controller/ctlLaboratorio.php`;
     return this.http.post<any>(url_api, postData);
   }
 
   searchLabs(postData: any) {
+    postData.append('token', this.helperService.generarToken());
     const url_api = `http://localhost/taller1ElectivaII/controller/ctlLaboratorio.php`;
     return this.http.post<any>(url_api, postData);
   }
 
   deleteLabs(postData: any) {
+    postData.append('token', this.helperService.generarToken());
     const url_api = `http://localhost/taller1ElectivaII/controller/ctlLaboratorio.php`;
     return this.http.post<any>(url_api, postData);
   }

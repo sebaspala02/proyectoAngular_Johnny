@@ -18,6 +18,7 @@ export class LoginService {
   ) { }
 
   logIn(postData: any) {
+    postData.append('token', this.helperService.generarToken());
     const url = `http://localhost/taller1ElectivaII/controller/gestionLogin.php`;
     return this.http.post<any>(url, postData);
   }

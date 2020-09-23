@@ -1,10 +1,15 @@
 import { Injectable } from '@angular/core';
 
+import { Md5 } from 'ts-md5/dist/md5';
+import { DatePipe } from '@angular/common';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class HelperService {
+
+  myDate = new Date();
 
   /*Configuracion modal*/
   modalTitle: string;
@@ -12,8 +17,16 @@ export class HelperService {
   modalOpen = false;
   /*END Configuracion modal*/
 
-  constructor() { }
+  constructor(private datePipe: DatePipe) { }
 
+  public generarToken() {
+    let fechaActual = this.datePipe.transform(this.myDate, 'dd/MM/yyy');
+    let palabraClave = 'eAm';
+    let token = palabraClave + fechaActual;
+    const md5 = new Md5();
+    let tokenApp = md5.appendStr(token).end();
+    return tokenApp;
+  }
 
   isValidValue(val: string) {
 
@@ -57,7 +70,7 @@ export class HelperService {
 
 
   public mappingObjectToForm(obj: any) {
-    
+
     let postDataObj = new FormData();
 
     for (var key in obj) {

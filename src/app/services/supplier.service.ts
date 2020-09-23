@@ -22,16 +22,19 @@ export class SupplierService {
   }
 
   saveSuppliers(postData: any) {
+    postData.append('token', this.helperService.generarToken());
     const url_api = `http://localhost/taller1ElectivaII/controller/ctlProveedor.php`;
     return this.http.post<any>(url_api, postData);
   }
 
   findSuppliers(postData: any) {
+    postData.append('token', this.helperService.generarToken());
     const url_api = `http://localhost/taller1ElectivaII/controller/ctlProveedor.php`;
     return this.http.post<any>(url_api, postData);
   }
 
   deleteSuplliers(postData: any) {
+    postData.append('token', this.helperService.generarToken());
     const url_api = `http://localhost/taller1ElectivaII/controller/ctlProveedor.php`;
     return this.http.post<any>(url_api, postData);
   }

@@ -30,16 +30,19 @@ export class UserService {
   }
 
   createUsers(postData: any) {
+    postData.append('token', this.helperService.generarToken());
     const url_api = `http://localhost/taller1ElectivaII/controller/ctlUsuario.php`;
     return this.http.post<any>(url_api, postData);
   }
 
   searchUsers(postData: any) {
+    postData.append('token', this.helperService.generarToken());
     const url_api = `http://localhost/taller1ElectivaII/controller/ctlUsuario.php`;
     return this.http.post<any>(url_api, postData);
   }
 
   deleteUsers(postData: any) {
+    postData.append('token', this.helperService.generarToken());
     const url_api = `http://localhost/taller1ElectivaII/controller/ctlUsuario.php`;
     return this.http.post<any>(url_api, postData);
   }

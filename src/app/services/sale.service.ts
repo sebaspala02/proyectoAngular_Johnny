@@ -18,18 +18,25 @@ export class SaleService {
       private http: HttpClient,
       public helperService: HelperService
     ) { }
-    listProducts() {
-      const url_api = `http://localhost/taller1ElectivaII/controller/ctlMedi.php?type=list`;
-      return this.http.get<SaleInterface>(url_api);
-    }
-    listCustomers() {
-      const url_api = `http://localhost/taller1ElectivaII/controller/ctlCliente.php?type=list`;
-      return this.http.get<SaleInterface>(url_api);
-    }
-    createSale(postData: any) {
-      const url_api = `http://localhost/taller1ElectivaII/controller/ctlDetalle.php`;
-      return this.http.post<any>(url_api, postData);
-    }
+
+  listSales() {
+    const url_api = `http://localhost/taller1ElectivaII/controller/ctlDetalle.php?type=list`;
+    return this.http.get<SaleInterface>(url_api);
+  }
+
+  listProducts() {
+    const url_api = `http://localhost/taller1ElectivaII/controller/ctlMedi.php?type=list`;
+    return this.http.get<SaleInterface>(url_api);
+  }
+  listCustomers() {
+    const url_api = `http://localhost/taller1ElectivaII/controller/ctlCliente.php?type=list`;
+    return this.http.get<SaleInterface>(url_api);
+  }
+  createSale(postData: any) {
+    postData.append('token', this.helperService.generarToken());
+    const url_api = `http://localhost/taller1ElectivaII/controller/ctlDetalle.php`;
+    return this.http.post<any>(url_api, postData);
+  }
 
   readUsers() {
     const url_api = `http://localhost/taller1ElectivaII/controller/ctlVenta.php?type=list`;

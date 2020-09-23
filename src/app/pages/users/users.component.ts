@@ -235,11 +235,7 @@ export class UsersComponent implements OnInit {
 
 
   deleteUser() {
-
-    // console.log("delete idusuario");
-    // console.log(idusuario);
-
-    /*Funcion que se encarga de almacenar la informacion del rol*/
+    
     let postDataObj = new FormData();
     postDataObj.append("idusuario", this.idusuario);
     postDataObj.append("type", "delete");
